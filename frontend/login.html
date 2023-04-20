@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style.css" />
+    <script
+      type="module"
+      src="./script/loginScripts/controller.js"
+      defer
+    ></script>
+    <title>Expecto Patronum | Login</title>
+  </head>
+  <body>
+    <div class="container container-register">
+      <form id="login" class="globalForm">
+        <h2 class="heading-primary">Login</h2>
+
+        <div class="input-container">
+          <img src="imgs/atIcon.svg" alt="" />
+          <input
+            type="text"
+            placeholder="Email"
+            name="email"
+            id="inputEmailLogin"
+          />
+        </div>
+        <div class="input-container">
+          <img src="imgs/passIcon.svg" alt="" />
+          <input
+            type="password"
+            placeholder="Password"
+            name="password"
+            id="inputPasswordLogin"
+            minlength="8"
+          />
+        </div>
+
+        <button id="loginUser" class="form-btn">Login</button>
+      </form>
+    </div>
+    <div id="alertWindow">
+      <span></span>
+    </div>
+  </body>
+</html>

@@ -3,6 +3,7 @@ const UserModel = require("../models/userModel");
 const jwt = require("jsonwebtoken");
 const AppError = require("../utils/AppError");
 const bcrypt = require("bcrypt");
+const path = require("path");
 const crypto = require("crypto");
 const Email = require("../utils/sendEmail");
 
@@ -95,11 +96,8 @@ exports.confirmAccount = catchAsync(async (req, res, next) => {
   //Create a token
   const token = await createSendToken(user._id, res);
 
-  res.status(201).json({
-    status: "success",
-    message: "You have registered successfully!",
-    token,
-  });
+  const file = path.join(__dirname, "../../frontend/confirmed.html");
+  res.status(201).sendFile(file);
 });
 
 exports.login = catchAsync(async (req, res, next) => {

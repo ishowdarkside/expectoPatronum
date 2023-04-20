@@ -1,25 +1,54 @@
 const errorMiddleware = (err, req, res, next) => {
   const statusCode = err.statusCode || 500;
   const status = err.status || "error";
+
   if (process.env.NODE_ENV === "development") {
     res.status(statusCode).json({
-      status: status,
-      message: err.message,
-      stack: err.stack,
+      err,
     });
-
-    if (process.env.NODE_ENV === "production") {
-      if (err.isOperational) {
-        res.status(statusCode).json({
-          status: status,
-          message: err.message,
-        });
-      } else
-        res.status(500).json({
-          status: "error",
-          message: "Something went very wrong!",
-        });
+  }
+  if (process.env.NODE_ENV === "production") {
+    if (err.code === 11000) {
+      return res.status(400).json({
+        status: "fail",
+        message: "Email already in use!",
+      });
     }
+
+    if (err.errors?.name?.message === "Please provide full name") {
+      return res.status(400).json({
+        status: "fail",
+        message: err.errors.name.message,
+      });
+    }
+    if (err.errors?.passwordConfirm) {
+      return res.status(400).json({
+        status: "fail",
+        message: err.errors.passwordConfirm.message,
+      });
+    }
+    if (err.errors?.password) {
+      return res.status(400).json({
+        status: "fail",
+        message: err.errors.password.message,
+      });
+    }
+    if (err.errors?.email.name === "ValidatorError") {
+      return res.status(400).json({
+        status: "fail",
+        message: "Invalid Email",
+      });
+    }
+    if (err.isOperational) {
+      return res.status(statusCode).json({
+        status: status,
+        message: err.message,
+      });
+    } else
+      return res.status(500).json({
+        status: "error",
+        message: "Something went very wrong!",
+      });
   }
 };
 

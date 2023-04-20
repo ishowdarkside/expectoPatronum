@@ -1,0 +1,13 @@
+#alertWindow {
+  position: absolute;
+  background-color: #4eae4a;
+  padding: 1rem;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  width: 30rem;
+  text-align: center;
+  color: #fff;
+  transition: all 0.4s ease;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%) translateY(-6rem);
+}

@@ -5,11 +5,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./style.css" />
-    <title>Document</title>
+    <title>Expecto Patronum | Register</title>
+    <script
+      src="script/registerScripts/controller.js"
+      type="module"
+      defer
+    ></script>
   </head>
   <body>
     <div class="container container-register">
-      <form id="register">
+      <form id="register" class="globalForm">
         <h2 class="heading-primary">Sign up</h2>
         <div class="input-container">
           <img src="imgs/userIcon.svg" alt="" />
@@ -45,8 +50,11 @@
           />
         </div>
 
-        <button id="registerUser">SIGN UP</button>
+        <button id="registerUser" class="form-btn">SIGN UP</button>
       </form>
+    </div>
+    <div id="alertWindow">
+      <span></span>
     </div>
   </body>
 </html>

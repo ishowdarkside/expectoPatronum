@@ -36,28 +36,4 @@ body {
       position: absolute;
     }
   }
-
-  #registerUser {
-    padding: 1rem;
-    border: none;
-    outline: none;
-    border-radius: 1rem;
-    background-color: $blue;
-    color: #fff;
-    cursor: pointer;
-    font-weight: 600;
-  }
-}
-
-#register {
-  background-color: purple;
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-  box-shadow: rgba(55, 56, 56, 0.2) 0px 8px 24px;
-  background-color: #ffff;
-  border-radius: 1rem;
-  max-width: 65rem;
-  padding: 4rem;
-  gap: 3rem;
 }

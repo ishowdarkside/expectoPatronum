@@ -49,18 +49,19 @@ body {
       left: 2%;
       transform: translateY(-50%);
       position: absolute; }
-  .container-register #registerUser {
-    padding: 1rem;
-    border: none;
-    outline: none;
-    border-radius: 1rem;
-    background-color: #277ffe;
-    color: #fff;
-    cursor: pointer;
-    font-weight: 600; }
 
-#register {
-  background-color: purple;
+.container-perm {
+  max-width: 120rem;
+  margin: 0 auto;
+  text-align: center;
+  height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  font-family: "Montserrat", sans-serif; }
+
+.globalForm {
   display: flex;
   flex-direction: column;
   flex-grow: 1;
@@ -70,3 +71,26 @@ body {
   max-width: 65rem;
   padding: 4rem;
   gap: 3rem; }
+
+.form-btn {
+  padding: 1rem;
+  border: none;
+  outline: none;
+  border-radius: 1rem;
+  background-color: #277ffe;
+  color: #fff;
+  cursor: pointer;
+  font-weight: 600; }
+
+#alertWindow {
+  position: absolute;
+  background-color: #4eae4a;
+  padding: 1rem;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  width: 30rem;
+  text-align: center;
+  color: #fff;
+  transition: all 0.4s ease;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%) translateY(-6rem); }
