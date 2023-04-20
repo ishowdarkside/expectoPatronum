@@ -1,0 +1,63 @@
+body {
+  background-color: #f2f5ff;
+}
+
+.container-register {
+  height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: $mont;
+
+  input {
+    height: 4rem;
+    color: #546884;
+    font-weight: 600;
+    padding: 1rem 1rem 1rem 4rem;
+    width: 100%;
+    border: 1px solid #ebebeb;
+    display: block;
+    border-radius: 1rem;
+    outline: none;
+    &::placeholder {
+      color: #546884;
+      font-weight: 600;
+    }
+  }
+
+  .input-container {
+    width: 100%;
+    position: relative;
+
+    img {
+      top: 50%;
+      left: 2%;
+      transform: translateY(-50%);
+      position: absolute;
+    }
+  }
+
+  #registerUser {
+    padding: 1rem;
+    border: none;
+    outline: none;
+    border-radius: 1rem;
+    background-color: $blue;
+    color: #fff;
+    cursor: pointer;
+    font-weight: 600;
+  }
+}
+
+#register {
+  background-color: purple;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  box-shadow: rgba(55, 56, 56, 0.2) 0px 8px 24px;
+  background-color: #ffff;
+  border-radius: 1rem;
+  max-width: 65rem;
+  padding: 4rem;
+  gap: 3rem;
+}

@@ -1,0 +1,72 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;1,100;1,300;1,400&display=swap");
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: inherit;
+  font-family: inherit; }
+
+html {
+  font-size: 62.5%;
+  box-sizing: border-box; }
+
+body {
+  font-size: 1.8rem;
+  font-family: "Lato", sans-serif;
+  color: #546884; }
+
+.container {
+  max-width: 120rem;
+  margin: 0 auto; }
+
+body {
+  background-color: #f2f5ff; }
+
+.container-register {
+  height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Montserrat", sans-serif; }
+  .container-register input {
+    height: 4rem;
+    color: #546884;
+    font-weight: 600;
+    padding: 1rem 1rem 1rem 4rem;
+    width: 100%;
+    border: 1px solid #ebebeb;
+    display: block;
+    border-radius: 1rem;
+    outline: none; }
+    .container-register input::placeholder {
+      color: #546884;
+      font-weight: 600; }
+  .container-register .input-container {
+    width: 100%;
+    position: relative; }
+    .container-register .input-container img {
+      top: 50%;
+      left: 2%;
+      transform: translateY(-50%);
+      position: absolute; }
+  .container-register #registerUser {
+    padding: 1rem;
+    border: none;
+    outline: none;
+    border-radius: 1rem;
+    background-color: #277ffe;
+    color: #fff;
+    cursor: pointer;
+    font-weight: 600; }
+
+#register {
+  background-color: purple;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  box-shadow: rgba(55, 56, 56, 0.2) 0px 8px 24px;
+  background-color: #ffff;
+  border-radius: 1rem;
+  max-width: 65rem;
+  padding: 4rem;
+  gap: 3rem; }
