@@ -8,7 +8,6 @@ class LoginView {
       const password = document.querySelector("#inputPasswordLogin");
       const res = await handler(email.value, password.value);
       email.value = password.value = "";
-      console.log(res);
 
       if (res.status === "fail") {
         this.#alertWindow.style.transform = `translateX(-50%) translateY(0)`;
@@ -19,7 +18,12 @@ class LoginView {
         this.#alertWindow.querySelector("span").textContent = res.message;
       }
       if (res.status === "success") {
-        window.location.href = "/main";
+        this.#alertWindow.style.backgroundColor = "#4eae4a";
+        this.#alertWindow.style.transform = `translateX(-50%) translateY(0)`;
+        this.#alertWindow.querySelector("span").textContent = res.message;
+        setTimeout(() => {
+          window.location.href = "/main";
+        }, 3000);
       }
     });
   }

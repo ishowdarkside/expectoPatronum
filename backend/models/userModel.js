@@ -64,7 +64,6 @@ const UserSchema = new mongoose.Schema({
   },
   passwordChangedAt: {
     type: Date,
-    default: new Date(Date.now() + 10 * 60 * 1000),
   },
 
   passwordResetTokenExpires: {
@@ -75,10 +74,14 @@ const UserSchema = new mongoose.Schema({
   },
 });
 
-UserSchema.methods.checkPasswordDate = function () {
+UserSchema.methods.checkPasswordDate = function (iat) {
   if (this.passwordChangedAt) {
-    const passwordChangedAt = Date.parse(this.passwordChangedAt);
-    return passwordChangedAt > Date.now();
+    const passwordChangedAt = parseInt(
+      this.passwordChangedAt.getTime() / 1000,
+      10
+    );
+    console.log(passwordChangedAt);
+    return passwordChangedAt > iat;
   }
   return false;
 };
@@ -87,6 +90,14 @@ UserSchema.pre("save", async function (next) {
   if (!this.isModified("password")) return next();
   this.password = await bcrypt.hash(this.password, 12);
   this.passwordConfirm = undefined;
+});
+
+UserSchema.pre("save", function (next) {
+  if (this.isNew) return next();
+  if (this.isModified("password")) {
+    this.passwordChangedAt = new Date();
+  }
+  next();
 });
 
 const UserModel = mongoose.model("User", UserSchema);

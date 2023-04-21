@@ -1,3 +1,5 @@
+const jwt = require("jsonwebtoken");
+
 const errorMiddleware = (err, req, res, next) => {
   const statusCode = err.statusCode || 500;
   const status = err.status || "error";
@@ -8,6 +10,10 @@ const errorMiddleware = (err, req, res, next) => {
     });
   }
   if (process.env.NODE_ENV === "production") {
+    if (err instanceof jwt.JsonWebTokenError) {
+      return res.redirect("/login");
+    }
+
     if (err.code === 11000) {
       return res.status(400).json({
         status: "fail",

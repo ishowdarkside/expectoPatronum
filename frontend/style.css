@@ -25,6 +25,14 @@ body {
   max-width: 120rem;
   margin: 0 auto; }
 
+#redirectRegister {
+  color: #277ffe;
+  font-size: 1.6rem; }
+
+#redirectLogin {
+  color: #277ffe;
+  font-size: 1.6rem; }
+
 body {
   background-color: #f2f5ff; }
 
@@ -55,6 +63,9 @@ body {
       left: 2%;
       transform: translateY(-50%);
       position: absolute; }
+
+#redirectRegister {
+  color: #277ffe; }
 
 .container-perm {
   max-width: 120rem;
@@ -122,13 +133,12 @@ body {
       display: flex;
       flex-direction: column;
       gap: 2rem; }
-      .main__section .left-sidebar ul li {
+      .main__section .left-sidebar ul li a {
         display: flex;
         gap: 1rem;
+        text-decoration: none;
+        color: #546890;
         align-items: center; }
-        .main__section .left-sidebar ul li a {
-          text-decoration: none;
-          color: #546884; }
   .main__section .main-grid {
     overflow-y: scroll; }
     .main__section .main-grid::-webkit-scrollbar-track {

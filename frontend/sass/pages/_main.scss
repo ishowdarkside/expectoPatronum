@@ -24,13 +24,12 @@
       gap: 2rem;
 
       li {
-        display: flex;
-        gap: 1rem;
-        align-items: center;
-
         a {
+          display: flex;
+          gap: 1rem;
           text-decoration: none;
-          color: #546884;
+          color: #546890;
+          align-items: center;
         }
       }
     }
