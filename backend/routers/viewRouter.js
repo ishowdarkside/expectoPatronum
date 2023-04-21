@@ -7,3 +7,6 @@ router.get("/register", viewController.renderRegister);
 module.exports = router;
 
 router.get("/login", viewController.renderLogin);
+router.get("/main", authController.protect, viewController.renderMain);
+
+router.get("/", authController.protect, viewController.renderMain);

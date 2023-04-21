@@ -8,3 +8,8 @@ exports.renderLogin = (req, res) => {
   const file = path.join(__dirname, "../../frontend/login.html");
   res.sendFile(file);
 };
+
+exports.renderMain = (req, res) => {
+  const file = path.join(__dirname, "../../frontend/main.html");
+  res.sendFile(file);
+};
