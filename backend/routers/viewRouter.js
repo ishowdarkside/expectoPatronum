@@ -11,4 +11,4 @@ router.get("/main", authController.protect, viewController.renderMain);
 
 router.get("/", authController.protect, viewController.renderMain);
 
-router.get("/me", authController.protect, viewController.renderMe);
+router.get("/settings", authController.protect, viewController.renderMe);

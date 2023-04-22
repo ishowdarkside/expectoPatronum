@@ -22,7 +22,7 @@ exports.renderMe = (req, res) => {
     "..",
     "frontend",
     "templates",
-    "me.html"
+    "settings.html"
   );
   //res.render(file);
   res.sendFile(file);

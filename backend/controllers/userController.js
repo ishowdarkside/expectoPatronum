@@ -8,6 +8,7 @@ exports.updateMe = catchAsync(async (req, res, next) => {
     { name: req.body.name, email: req.body.email },
     { runValidators: true }
   );
+  console.log(req.file);
   res.status(200).json({
     status: "success",
     message: "Personal Informations changed successfully!",

@@ -8,7 +8,12 @@ router.get("/confirmAccount/:token", authController.confirmAccount);
 router.post("/login", authController.login);
 router.post("/forgotPassword", authController.forgotPassword);
 router.post("/resetPassword/:token", authController.resetPassword);
-router.patch("/me", authController.protect, userController.updateMe);
+router.patch(
+  "/me",
+  authController.protect,
+
+  userController.updateMe
+);
 router.patch(
   "/changePassword",
   authController.protect,

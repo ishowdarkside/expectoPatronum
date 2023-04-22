@@ -230,7 +230,7 @@ body {
         border-radius: 1rem;
         background-color: rgba(180, 180, 180, 0.3);
         padding: 1rem; }
-    .change-password-wrapper #passwordForm #submitChanges {
+    .change-password-wrapper #passwordForm #submitPasswordChanges {
       text-transform: uppercase;
       font-family: "Montserrat", sans-serif;
       align-self: flex-end; }

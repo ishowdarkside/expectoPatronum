@@ -6,6 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Expecto Patronum | Settings</title>
+    <script
+      src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"
+      defer
+    ></script>
+    <script
+      src="/script/editProfileScripts/controller.js"
+      type="module"
+      defer
+    ></script>
   </head>
   <body>
     <nav class="navbar">
@@ -59,7 +68,7 @@
           <form id="meForm">
             <div>
               <label for="name">Name</label>
-              <input type="text" id="name" name="name" value="Ajdin Omerović" />
+              <input type="text" id="name" name="name" value="ajdin omerovic" />
             </div>
             <div>
               <label for="email">Email</label>
@@ -113,7 +122,7 @@
                 name="newPasswordConfirm"
               />
             </div>
-            <button id="submitChanges" class="form-btn form-btn-blue">
+            <button id="submitPasswordChanges" class="form-btn form-btn-blue">
               Submit
             </button>
           </form>
@@ -122,4 +131,7 @@
     </div>
     <div class="right-sidebar">RIGHT</div>
   </section>
+  <div id="alertWindow">
+    <span></span>
+  </div>
 </html>
