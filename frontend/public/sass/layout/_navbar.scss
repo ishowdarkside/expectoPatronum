@@ -3,6 +3,9 @@
   display: flex;
   padding: 1rem 3rem;
 
+  a {
+    text-decoration: none;
+  }
   top: 0;
   background-color: #ffff;
   height: 6rem;
@@ -12,6 +15,13 @@
   position: fixed;
 
   .user-container {
+    a {
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      color: #313131;
+    }
     display: flex;
     align-items: center;
     gap: 1rem;
@@ -45,7 +55,8 @@
       left: 50%;
       transform: translate(-50%, -50%);
 
-      &:focus {
+      &:focus,
+      &:not(:placeholder-shown) {
         z-index: 9999;
       }
     }

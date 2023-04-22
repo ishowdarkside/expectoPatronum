@@ -13,3 +13,17 @@ exports.renderMain = (req, res) => {
   const file = path.join(__dirname, "../../frontend/main.html");
   res.sendFile(file);
 };
+
+exports.renderMe = (req, res) => {
+  //const file = path.join(__dirname, "..", "views", "me");
+  const file = path.join(
+    __dirname,
+    "..",
+    "..",
+    "frontend",
+    "templates",
+    "me.html"
+  );
+  //res.render(file);
+  res.sendFile(file);
+};

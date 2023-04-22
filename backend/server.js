@@ -11,6 +11,9 @@ mongoose
     console.log("Connected to database successfully!");
   })
   .catch((err) => {
+    if (process.env.NODE_ENV === "development") {
+      console.log(err);
+    }
     console.log("something went wrong connecting to database");
   });
 

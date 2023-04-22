@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="./../style.css" />
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Expecto Patronum | Settings</title>
+  </head>
+  <body>
+    <nav class="navbar">
+      <a href="/"
+        ><h1 class="heading-primary heading-primary-blue">
+          Expecto Patronum
+        </h1></a
+      >
+      <div class="input-container">
+        <img src="/imgs/search.svg" alt="search icon" />
+        <input type="search" id="search" placeholder=" " />
+      </div>
+      <div class="user-container">
+        <a href="/me">
+          <span id="name">Ajdin</span>
+          <img src="/imgs/me.svg" alt="user image" />
+        </a>
+      </div>
+    </nav>
+  </body>
+
+  <section class="main__section">
+    <div class="left-sidebar">
+      <ul>
+        <li>
+          <a href="#"> <img src="/imgs/home.svg" alt="" /><span>Home</span></a>
+        </li>
+        <li>
+          <a href="#"
+            ><img src="/imgs/message.svg" alt="" /><span>Chat</span></a
+          >
+        </li>
+        <li>
+          <a href="#"
+            ><img src="/imgs/notification.png" alt="" /><span
+              >Notifications</span
+            ></a
+          >
+        </li>
+        <li>
+          <a href="/me"
+            ><img src="/imgs/settings.svg" alt="" /><span>Settings</span></a
+          >
+        </li>
+      </ul>
+    </div>
+    <div class="main-grid">
+      <div class="change-profile-wrapper">
+        <div class="general-wrapper">
+          <h2 class="heading-primary mb-small">Edit Profile</h2>
+          <form id="meForm">
+            <div>
+              <label for="name">Name</label>
+              <input type="text" id="name" name="name" value="Ajdin Omerović" />
+            </div>
+            <div>
+              <label for="email">Email</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                value="ajdin.omerovicc.ets@gmail.com"
+              />
+            </div>
+
+            <div id="img-container">
+              <img src="./imgs/me.png" alt="" />
+              <input type="file" />
+            </div>
+            <button id="submitChanges" class="form-btn form-btn-blue">
+              Submit
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <div class="change-password-wrapper mt-big">
+        <div class="general-wrapper">
+          <h2 class="heading-primary">Change Password</h2>
+          <form id="passwordForm">
+            <div>
+              <label for="currentPassword">Current Password</label>
+              <input
+                type="password"
+                id="currentPassword"
+                placeholder="******"
+                name="currentPassword"
+              />
+            </div>
+            <div>
+              <label for="newPassword">New Password</label>
+              <input
+                type="password"
+                id="newPassword"
+                placeholder="******"
+                name="newPassword"
+              />
+            </div>
+            <div>
+              <label for="newPasswordConfirm">Confirm Password</label>
+              <input
+                type="password"
+                id="newPasswordConfirm"
+                placeholder="*****"
+                name="newPasswordConfirm"
+              />
+            </div>
+            <button id="submitChanges" class="form-btn form-btn-blue">
+              Submit
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="right-sidebar">RIGHT</div>
+  </section>
+</html>

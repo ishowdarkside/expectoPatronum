@@ -33,6 +33,24 @@ body {
   color: #277ffe;
   font-size: 1.6rem; }
 
+.mb-small {
+  margin-bottom: 2rem; }
+
+.mb-medium {
+  margin-bottom: 4rem; }
+
+.mb-big {
+  margin-bottom: 7rem; }
+
+.mt-small {
+  margin-top: 2rem; }
+
+.mt-medium {
+  margin-top: 4rem; }
+
+.mt-big {
+  margin-top: 7rem; }
+
 body {
   background-color: #f2f5ff; }
 
@@ -63,9 +81,6 @@ body {
       left: 2%;
       transform: translateY(-50%);
       position: absolute; }
-
-#redirectRegister {
-  color: #277ffe; }
 
 .container-perm {
   max-width: 120rem;
@@ -151,6 +166,78 @@ body {
       background-color: #277ffe;
       /* Set color of thumb */ }
 
+#meForm {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  align-items: flex-start; }
+  #meForm div {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 0.5rem; }
+    #meForm div input {
+      border: none;
+      outline: none;
+      width: 100%;
+      height: 4rem;
+      border-radius: 1rem;
+      background-color: rgba(180, 180, 180, 0.3);
+      padding: 1rem; }
+    #meForm div img {
+      width: 5rem; }
+  #meForm #img-container {
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start; }
+    #meForm #img-container input {
+      width: auto;
+      background-color: transparent;
+      border: none;
+      outline: none; }
+  #meForm #submitChanges {
+    text-transform: uppercase;
+    font-family: "Montserrat", sans-serif;
+    align-self: flex-end; }
+
+.change-profile-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50rem; }
+
+.change-password-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center; }
+  .change-password-wrapper .heading-primary {
+    text-align: end; }
+  .change-password-wrapper #passwordForm {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    align-items: flex-start; }
+    .change-password-wrapper #passwordForm div {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      gap: 0.5rem; }
+      .change-password-wrapper #passwordForm div input {
+        border: none;
+        outline: none;
+        width: 100%;
+        height: 4rem;
+        border-radius: 1rem;
+        background-color: rgba(180, 180, 180, 0.3);
+        padding: 1rem; }
+    .change-password-wrapper #passwordForm #submitChanges {
+      text-transform: uppercase;
+      font-family: "Montserrat", sans-serif;
+      align-self: flex-end; }
+
+.general-wrapper {
+  width: 50rem; }
+
 .navbar {
   width: 100%;
   display: flex;
@@ -162,10 +249,18 @@ body {
   align-items: center;
   border-bottom: 1px solid #dbdbdb;
   position: fixed; }
+  .navbar a {
+    text-decoration: none; }
   .navbar .user-container {
     display: flex;
     align-items: center;
     gap: 1rem; }
+    .navbar .user-container a {
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      color: #313131; }
     .navbar .user-container #name {
       font-family: "Montserrat", sans-serif;
       font-weight: 600; }
@@ -191,5 +286,5 @@ body {
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%); }
-      .navbar .input-container #search:focus {
+      .navbar .input-container #search:focus, .navbar .input-container #search:not(:placeholder-shown) {
         z-index: 9999; }

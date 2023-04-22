@@ -7,8 +7,10 @@ const errorMiddleware = require("./controllers/errorController");
 const viewRouter = require("./routers/viewRouter");
 dotenv.config({ path: `${__dirname}/../config.env` });
 const app = express();
-app.use(express.static("frontend"));
+app.use(express.static("frontend/public"));
 
+//Setting up view engine
+app.set("view engine", "pug");
 //morgan Listening to incoming requests
 app.use(morgan("dev"));
 //parsing the cookie

@@ -10,3 +10,5 @@ router.get("/login", viewController.renderLogin);
 router.get("/main", authController.protect, viewController.renderMain);
 
 router.get("/", authController.protect, viewController.renderMain);
+
+router.get("/me", authController.protect, viewController.renderMe);
