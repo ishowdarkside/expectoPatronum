@@ -9,23 +9,29 @@ export const updateInfo = async (formData) => {
     //const data = await res.json();
     return res;
   } catch (err) {
-    console.log(err);
     throw new Error(`${err.response.data.message}`);
   }
 };
 
-/*
-export const updateInfo = async (name, email) => {
-  const res = await fetch("/api/users/me", {
-    method: "PATCH",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      email,
-      name,
-    }),
-  });
+export const updatePassword = async (
+  currentPassword,
+  newPassword,
+  newPasswordConfirm
+) => {
+  try {
+    const res = await fetch("/api/users/changePassword", {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        currentPassword,
+        newPassword,
+        newPasswordConfirm,
+      }),
+    });
 
-  const data = await res.json();
-  return data;
+    const data = await res.json();
+    return data;
+  } catch (err) {
+    throw new Error(err);
+  }
 };
-*/

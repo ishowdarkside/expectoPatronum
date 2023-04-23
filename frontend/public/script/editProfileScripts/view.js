@@ -1,5 +1,6 @@
 class updateClass {
   #generalForm = document.querySelector("#meForm");
+  #passwordForm = document.querySelector("#passwordForm");
   #alertWindow = document.querySelector("#alertWindow");
   handleGeneralForm(handler) {
     this.#generalForm.addEventListener("submit", async (e) => {
@@ -7,7 +8,7 @@ class updateClass {
         e.preventDefault();
         const formData = new FormData(this.#generalForm);
         const res = await handler(formData);
-        console.log(res);
+
         if (res.data.status === "success") {
           this.handleSuccess(res.data.message);
         } else if (res.data.status === "error") {
@@ -35,6 +36,32 @@ class updateClass {
     setTimeout(() => {
       this.#alertWindow.style.transform = `translateX(-50%) translateY(-6rem)`;
     }, 2000);
+  }
+
+  handlePasswordForm(handler) {
+    this.#passwordForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const currentPassword =
+        this.#passwordForm.querySelector("#currentPassword");
+      const newPassword = this.#passwordForm.querySelector("#newPassword");
+      const newPasswordConfirm = this.#passwordForm.querySelector(
+        "#newPasswordConfirm"
+      );
+      const res = await handler(
+        currentPassword.value,
+        newPassword.value,
+        newPasswordConfirm.value
+      );
+
+      if (res.status === "success") {
+        this.handleSuccess(res.message);
+        setTimeout(() => {
+          location.reload();
+        }, 2000);
+      } else if (res.status === "fail") {
+        this.handleError(res.message);
+      }
+    });
   }
 }
 

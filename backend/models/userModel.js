@@ -73,6 +73,10 @@ const UserSchema = new mongoose.Schema(
     passwordResetToken: {
       type: String,
     },
+    profilePicture: {
+      type: String,
+      default: "/imgs/me.svg",
+    },
   },
   { validateModifiedOnly: true }
 );
@@ -83,7 +87,7 @@ UserSchema.methods.checkPasswordDate = function (iat) {
       this.passwordChangedAt.getTime() / 1000,
       10
     );
-    console.log(passwordChangedAt);
+
     return passwordChangedAt > iat;
   }
   return false;
