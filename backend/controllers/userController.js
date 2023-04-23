@@ -2,6 +2,7 @@ const catchAsync = require("../utils/catchAsync");
 const UserModel = require("../models/userModel");
 const AppError = require("../utils/AppError");
 const bcrypt = require("bcrypt");
+const sharp = require("sharp");
 
 exports.updateMe = catchAsync(async (req, res, next) => {
   if (req.file) {
@@ -10,6 +11,7 @@ exports.updateMe = catchAsync(async (req, res, next) => {
       {
         name: req.body.name,
         email: req.body.email,
+        description: req.body.description,
         profilePicture: `/imgs/${req.file?.filename}`,
       },
       { runValidators: true }
@@ -17,7 +19,11 @@ exports.updateMe = catchAsync(async (req, res, next) => {
   } else {
     await UserModel.findByIdAndUpdate(
       req.user._id,
-      { name: req.body.name, email: req.body.email },
+      {
+        name: req.body.name,
+        email: req.body.email,
+        description: req.body.description,
+      },
       { runValidators: true }
     );
   }
@@ -44,4 +50,19 @@ exports.changePassword = catchAsync(async (req, res, next) => {
     message:
       "password changed successfully! You will be redirected to login page shortly",
   });
+});
+
+exports.resizePhoto = catchAsync(async (req, res, next) => {
+  if (!req.file) return next();
+
+  req.file.filename = `user-${req.user.id}-${Date.now()}.jpeg`;
+  console.log(req.file);
+
+  await sharp(req.file.buffer)
+    .resize(500, 500)
+    .toFormat("jpeg")
+    .jpeg({ quality: 90 })
+    .toFile(`${__dirname}/../../frontend/public/imgs/${req.file.filename}`);
+
+  next();
 });

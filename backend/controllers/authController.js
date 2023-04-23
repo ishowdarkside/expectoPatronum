@@ -159,7 +159,6 @@ exports.restrictRegLog = async (req, res, next) => {
     if (!decoded) return next();
     else if (decoded) {
       const user = await UserModel.findById(decoded.id);
-
       if (!user) return next();
       if (user.checkPasswordDate(decoded.iat)) {
         return next();

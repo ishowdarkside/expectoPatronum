@@ -6,6 +6,7 @@ const cookieParser = require("cookie-parser");
 const errorMiddleware = require("./controllers/errorController");
 const viewRouter = require("./routers/viewRouter");
 const multer = require("multer");
+const postRouter = require("./routers/postRouter");
 dotenv.config({ path: `${__dirname}/../config.env` });
 const app = express();
 
@@ -21,7 +22,7 @@ app.use(cookieParser());
 app.use(express.json());
 //Routing
 app.use("/api/users", userRouter);
-
+app.use("/api/posts", postRouter);
 //view rendering
 app.use("/", viewRouter);
 

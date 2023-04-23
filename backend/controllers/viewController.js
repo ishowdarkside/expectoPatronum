@@ -14,7 +14,7 @@ exports.renderMain = (req, res) => {
   res.render(file, { user: req.user });
 };
 
-exports.renderMe = (req, res) => {
+exports.renderSettings = (req, res) => {
   const file = path.join(__dirname, "..", "views", "settings");
   res.render(file, { user: req.user });
 
@@ -27,4 +27,27 @@ exports.renderMe = (req, res) => {
     "settings.html"
   );
   res.sendFile(file);*/
+};
+
+exports.renderMe = (req, res) => {
+  const file = path.join(__dirname, "..", "views", "me");
+  res.render(file, { user: req.user });
+
+  /*
+  res.sendFile(
+    path.join(__dirname, "..", "..", "frontend", "templates", "me.html")
+  );*/
+};
+
+exports.renderCreatePost = (req, res) => {
+  const file = path.join(
+    __dirname,
+    "..",
+    "..",
+    "frontend",
+    "templates",
+    "createPost.html"
+  );
+
+  res.sendFile(file);
 };

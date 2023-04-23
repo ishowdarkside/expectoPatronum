@@ -49,6 +49,10 @@ section.main__section
           div
             label(for='email') Email
             input#email(type='email' name='email' value=`${user.email}`)
+          div
+            label(for='description') Description 
+            - const description = user.description ? user.description : '';
+            input#description(type='text' name='description' value=`${description}`)
           #img-container
             img(src=`${user.profilePicture}` alt='profile pic')
             input#profilePicture(type='file' name='profilePicture')

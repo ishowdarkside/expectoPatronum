@@ -77,6 +77,9 @@ const UserSchema = new mongoose.Schema(
       type: String,
       default: "/imgs/me.svg",
     },
+    description: {
+      type: String,
+    },
   },
   { validateModifiedOnly: true }
 );

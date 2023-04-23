@@ -19,5 +19,12 @@ router.get(
   "/settings",
   authController.protect,
 
-  viewController.renderMe
+  viewController.renderSettings
+);
+
+router.get("/me", authController.protect, viewController.renderMe);
+router.get(
+  "/createPost",
+  authController.protect,
+  viewController.renderCreatePost
 );

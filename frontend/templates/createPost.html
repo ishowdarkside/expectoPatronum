@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style.css" />
+    <title>Expecto Patronum | Create a post</title>
+    <script
+      src="script/postScripts.js/controller.js"
+      type="module"
+      defer
+    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  </head>
+  <body>
+    <!--Zamjeni navbar sa  navbarom iz main.puga-->
+    <nav class="navbar">
+      <a href="/"
+        ><h1 class="heading-primary heading-primary-blue">
+          Expecto Patronum
+        </h1></a
+      >
+      <div class="input-container">
+        <img src="./imgs/search.svg" alt="search icon" />
+        <input type="search" id="search" placeholder=" " />
+      </div>
+      <div class="user-container">
+        <a href="/settings">
+          <span id="name">Ajdin</span>
+          <img src="./imgs/me.svg" alt="user image" />
+        </a>
+      </div>
+    </nav>
+
+    <section class="main__section">
+      <div class="left-sidebar">
+        <ul>
+          <li>
+            <a href="#">
+              <img src="./imgs/home.svg" alt="" /><span>Home</span></a
+            >
+          </li>
+          <li>
+            <a href="#"
+              ><img src="./imgs/message.svg" alt="" /><span>Chat</span></a
+            >
+          </li>
+          <li>
+            <a href="#"
+              ><img src="./imgs/notification.png" alt="" /><span
+                >Notifications</span
+              ></a
+            >
+          </li>
+          <li>
+            <a href="/settings"
+              ><img src="./imgs/settings.svg" alt="" /><span>Settings</span></a
+            >
+          </li>
+        </ul>
+      </div>
+      <div class="main-grid">
+        <div class="createPost__page">
+          <form id="createPostForm">
+            <h2 class="heading-primary">Upload a post</h2>
+            <label for="postFile" id="postFileLabel">Choose file</label>
+            <input type="file" id="postFile" name="postFile" />
+            <input
+              type="text"
+              id="postDescription"
+              name="postDescription"
+              placeholder="write description..."
+            />
+            <button id="postPost">Post</button>
+          </form>
+        </div>
+      </div>
+      <div class="right-sidebar"></div>
+    </section>
+
+    <div id="alertWindow">
+      <span></span>
+    </div>
+  </body>
+</html>

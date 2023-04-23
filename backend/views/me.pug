@@ -1,0 +1,76 @@
+doctype html
+head
+  link(rel='stylesheet' href='/style.css')
+  meta(charset='UTF-8')
+  meta(http-equiv='X-UA-Compatible' content='IE=edge')
+  meta(name='viewport' content='width=device-width, initial-scale=1.0')
+  title Expecto Patronum | Ajdin Omerovic;
+nav.navbar
+  a(href='/')
+    h1.heading-primary.heading-primary-blue
+      | Expecto Patronum
+  .input-container
+    img(src='./imgs/search.svg' alt='search icon')
+    input#search(type='search' placeholder=' ')
+  .user-container
+    a(href='/settings')
+      span#name Ajdin
+      img(src='./imgs/me.svg' alt='user image')
+section.main__section
+  .left-sidebar
+    ul
+      li
+        a(href='#')
+          img(src='./imgs/home.svg' alt='')
+          span Home
+      li
+        a(href='#')
+          img(src='./imgs/message.svg' alt='')
+          span Chat
+      li
+        a(href='#')
+          img(src='./imgs/notification.png' alt='')
+          span Notifications
+      li
+        a(href='/settings')
+          img(src='./imgs/settings.svg' alt='')
+          span Settings
+  .main-grid
+    .page__me__profile-info
+      img(src='/imgs/me.png' alt='')
+      h2.page__me__heading-primary Ajdin Omerovic
+      span#description trep guru trep bos
+    .page__me__post-follower-data-wrapper
+      .data-wrapper
+        a(href='#')
+          span#followerData
+            b 13
+            |  posts
+        a(href='#')
+          span#followerData
+            b 512
+            |  followers
+        a(href='#')
+          span#followerData
+            b 42
+            |  following
+      .operation-wrapper
+        a#editProfileOperation(href='/settings') Edit Profile
+    .page__me__posts__wrapper
+      .options-wrapper
+        a(href='#') POSTS
+        a(href='#') STATUS
+      .page__me__posts
+        div
+          img(src='/imgs/6445218292a7c3aca1f25b59-1524217355808-fox_photo-vladimir-zivojinovic002.webp' alt='')
+        div
+          img(src='/imgs/6445218292a7c3aca1f25b59-1524217355808-fox_photo-vladimir-zivojinovic002.webp' alt='')
+        div
+          img(src='/imgs/6445218292a7c3aca1f25b59-1524217355808-fox_photo-vladimir-zivojinovic002.webp' alt='')
+        div
+          img(src='/imgs/6445218292a7c3aca1f25b59-1524217355808-fox_photo-vladimir-zivojinovic002.webp' alt='')
+        div
+          img(src='/imgs/6445218292a7c3aca1f25b59-1524217355808-fox_photo-vladimir-zivojinovic002.webp' alt='')
+        div
+          img(src='/imgs/6445218292a7c3aca1f25b59-1524217355808-fox_photo-vladimir-zivojinovic002.webp' alt='')
+  .right-sidebar

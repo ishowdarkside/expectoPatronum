@@ -239,6 +239,102 @@ body {
 .general-wrapper {
   width: 50rem; }
 
+.page__me__profile-info {
+  padding: 3rem;
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem; }
+  .page__me__profile-info img {
+    width: 10rem; }
+
+.page__me__post-follower-data-wrapper {
+  padding-left: 3rem;
+  padding-right: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between; }
+  .page__me__post-follower-data-wrapper .data-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 2rem; }
+  .page__me__post-follower-data-wrapper a {
+    text-decoration: none;
+    color: #b4b4b4; }
+    .page__me__post-follower-data-wrapper a b {
+      color: #546890; }
+  .page__me__post-follower-data-wrapper #editProfileOperation {
+    color: #ffff;
+    background-color: #277ffe;
+    padding: 1rem 2rem;
+    border-radius: 5px; }
+
+.page__me__posts__wrapper {
+  margin-top: 5rem;
+  padding: 3rem; }
+  .page__me__posts__wrapper .options-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 3rem; }
+    .page__me__posts__wrapper .options-wrapper a {
+      color: #546890;
+      text-decoration: none;
+      font-weight: 600; }
+
+.page__me__posts {
+  margin-top: 5rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+  gap: 1rem; }
+  .page__me__posts img {
+    object-fit: cover;
+    width: 100%; }
+
+.createPost__page {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; }
+  .createPost__page #createPostForm {
+    display: flex;
+    flex-direction: column;
+    width: 40rem;
+    gap: 1rem; }
+    .createPost__page #createPostForm #postFile {
+      display: none; }
+    .createPost__page #createPostForm #postFileLabel {
+      color: #277ffe;
+      text-decoration: underline;
+      text-align: center;
+      font-size: 1.8rem;
+      align-self: flex-start;
+      border-radius: 100px;
+      cursor: pointer; }
+    .createPost__page #createPostForm #postDescription {
+      border: none;
+      outline: none;
+      border-bottom: 1px solid #277ffe;
+      padding: 1rem;
+      height: 5rem;
+      background-color: #f7f7f7;
+      border-radius: 1rem; }
+    .createPost__page #createPostForm #postPost {
+      border: none;
+      outline: none;
+      align-self: flex-start;
+      text-transform: uppercase;
+      font-family: "Montserrat", sans-serif;
+      padding: 1rem 2rem;
+      font-size: 1.8rem;
+      cursor: pointer;
+      background-color: #277ffe;
+      color: #ffff;
+      border-radius: 1rem; }
+
 .navbar {
   width: 100%;
   display: flex;
