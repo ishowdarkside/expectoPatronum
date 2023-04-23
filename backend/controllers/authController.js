@@ -81,7 +81,7 @@ exports.confirmAccount = catchAsync(async (req, res, next) => {
   await user.save({ validateBeforeSave: false });
 
   //Create a token
-  const token = await createSendToken(user._id, res);
+  // const token = await createSendToken(user._id, res);
 
   const file = path.join(__dirname, "../../frontend/confirmed.html");
   res.status(201).sendFile(file);
@@ -150,3 +150,24 @@ setInterval(async () => {
     confirmTokenExpires: { $lt: currentDate },
   });
 }, 600000);
+
+exports.restrictRegLog = async (req, res, next) => {
+  try {
+    const token = req.cookies?.jwt;
+    if (!token) return next();
+    const decoded = await jwt.verify(token, process.env.JWT_SECRET);
+    if (!decoded) return next();
+    else if (decoded) {
+      const user = await UserModel.findById(decoded.id);
+
+      if (!user) return next();
+      if (user.checkPasswordDate(decoded.iat)) {
+        return next();
+      }
+
+      return res.redirect("/main");
+    }
+  } catch (err) {
+    if (err) return next();
+  }
+};
