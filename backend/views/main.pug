@@ -1,0 +1,40 @@
+doctype html
+head
+  meta(charset='UTF-8')
+  meta(http-equiv='X-UA-Compatible' content='IE=edge')
+  meta(name='viewport' content='width=device-width, initial-scale=1.0')
+  link(rel='stylesheet' href='./style.css')
+  title Expecto Patronum
+nav.navbar
+  a(href='/')
+    h1.heading-primary.heading-primary-blue
+      | Expecto Patronum
+  .input-container
+    img(src='./imgs/search.svg' alt='search icon')
+    input#search(type='search' placeholder=' ')
+  .user-container
+    a(href='/settings')
+      - const firstName = user.name.split(' ')[0];
+      span#name= firstName
+      img(src=`${user.profilePicture}` alt='user image')
+section.main__section
+  .left-sidebar
+    ul
+      li
+        a(href='/')
+          img(src='./imgs/home.svg' alt='')
+          span Home
+      li
+        a(href='#')
+          img(src='./imgs/message.svg' alt='')
+          span Chat
+      li
+        a(href='#')
+          img(src='./imgs/notification.png' alt='')
+          span Notifications
+      li
+        a(href='/settings')
+          img(src='./imgs/settings.svg' alt='')
+          span Settings
+  .main-grid
+  .right-sidebar

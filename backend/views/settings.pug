@@ -1,0 +1,74 @@
+doctype html
+head
+  link(rel='stylesheet' href='/style.css')
+  meta(charset='UTF-8')
+  meta(http-equiv='X-UA-Compatible' content='IE=edge')
+  meta(name='viewport' content='width=device-width, initial-scale=1.0')
+  title Expecto Patronum | Settings
+  script(src='https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js' defer='')
+  script(src='/script/editProfileScripts/controller.js' type='module' defer='')
+nav.navbar
+  a(href='/')
+    h1.heading-primary.heading-primary-blue
+      | Expecto Patronum
+  .input-container
+    img(src='/imgs/search.svg' alt='search icon')
+    input#search(type='search' placeholder=' ')
+  .user-container
+    a(href='/settings')
+      - const firstName = user.name.split(' ')[0];
+      span#name= firstName
+      img(src=`${user.profilePicture}` alt='user image')
+section.main__section
+  .left-sidebar
+    ul
+      li
+        a(href='/')
+          img(src='/imgs/home.svg' alt='')
+          span Home
+      li
+        a(href='#')
+          img(src='/imgs/message.svg' alt='')
+          span Chat
+      li
+        a(href='#')
+          img(src='/imgs/notification.png' alt='')
+          span Notifications
+      li
+        a(href='/settings')
+          img(src='/imgs/settings.svg' alt='')
+          span Settings
+  .main-grid
+    .change-profile-wrapper
+      .general-wrapper
+        h2.heading-primary.mb-small Edit Profile
+        form#meForm
+          div
+            label(for='name') Name
+            input#name(type='text' name='name' value=`${user.name}`)
+          div
+            label(for='email') Email
+            input#email(type='email' name='email' value=`${user.email}`)
+          #img-container
+            img(src=`${user.profilePicture}` alt='profile pic')
+            input#profilePicture(type='file' name='profilePicture')
+          button#submitChanges.form-btn.form-btn-blue
+            | Submit
+    .change-password-wrapper.mt-big
+      .general-wrapper
+        h2.heading-primary Change Password
+        form#passwordForm
+          div
+            label(for='currentPassword') Current Password
+            input#currentPassword(type='password' placeholder='*********' name='currentPassword')
+          div
+            label(for='newPassword') New Password
+            input#newPassword(type='password' placeholder='*********' name='newPassword')
+          div
+            label(for='newPasswordConfirm') Confirm Password
+            input#newPasswordConfirm(type='password' placeholder='*********' name='newPasswordConfirm')
+          button#submitPasswordChanges.form-btn.form-btn-blue
+            | Submit
+  .right-sidebar RIGHT
+#alertWindow
+  span

@@ -10,13 +10,15 @@ exports.renderLogin = (req, res) => {
 };
 
 exports.renderMain = (req, res) => {
-  const file = path.join(__dirname, "../../frontend/main.html");
-  res.sendFile(file);
+  const file = path.join(__dirname, "..", "views", "main");
+  res.render(file, { user: req.user });
 };
 
 exports.renderMe = (req, res) => {
-  //const file = path.join(__dirname, "..", "views", "me");
-  const file = path.join(
+  const file = path.join(__dirname, "..", "views", "settings");
+  res.render(file, { user: req.user });
+
+  /*const file = path.join(
     __dirname,
     "..",
     "..",
@@ -24,6 +26,5 @@ exports.renderMe = (req, res) => {
     "templates",
     "settings.html"
   );
-  //res.render(file);
-  res.sendFile(file);
+  res.sendFile(file);*/
 };

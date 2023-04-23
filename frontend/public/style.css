@@ -185,7 +185,8 @@ body {
       background-color: rgba(180, 180, 180, 0.3);
       padding: 1rem; }
     #meForm div img {
-      width: 5rem; }
+      width: 5rem;
+      border-radius: 100px; }
   #meForm #img-container {
     flex-direction: row;
     align-items: center;
@@ -264,6 +265,9 @@ body {
     .navbar .user-container #name {
       font-family: "Montserrat", sans-serif;
       font-weight: 600; }
+    .navbar .user-container img {
+      width: 4rem;
+      border-radius: 100px; }
   .navbar .input-container {
     position: relative;
     width: 40rem; }
