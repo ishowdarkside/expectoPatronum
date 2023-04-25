@@ -1,7 +1,9 @@
 const Post = require("../models/postModel");
+const User = require("../models/userModel");
 const catchAsync = require("../utils/catchAsync");
 const AppError = require("../utils/AppError");
 const sharp = require("sharp");
+const fs = require("fs");
 
 exports.createPost = catchAsync(async (req, res, next) => {
   const post = await new Post({
@@ -9,6 +11,10 @@ exports.createPost = catchAsync(async (req, res, next) => {
     postDescription: req.body.postDescription,
     creator: req.user._id,
   });
+  //const currentUser = await User.findById(req.user.id, { posts: post._id });
+  const currentUser = await User.findById(req.user.id);
+  currentUser.posts.push(post._id);
+  await currentUser.save({ validateBeforeSave: false });
   await post.save();
   res.status(200).json({
     status: "success",
@@ -20,7 +26,6 @@ exports.resizePhoto = catchAsync(async (req, res, next) => {
   if (!req.file) return next();
 
   req.file.filename = `user-${req.user.id}-${Date.now()}.jpeg`;
-  console.log(req.file);
 
   await sharp(req.file.buffer)
     .resize(500, 500)
@@ -57,6 +62,9 @@ exports.getSinglePost = catchAsync(async (req, res, next) => {
 });
 
 exports.deleteSinglePost = catchAsync(async (req, res, next) => {
-  await Post.findByIdAndDelete(req.params.postId);
+  const post = await Post.findById(req.params.postId);
+  fs.unlink(`${__dirname}/../../frontend/public${post.postImage}`, (err) => {});
+  await post.deleteOne();
+
   res.status(204).json({ status: "success" });
 });

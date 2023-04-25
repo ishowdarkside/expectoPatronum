@@ -7,13 +7,15 @@ head
   title Expecto Patronum | Settings
   script(src='https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js' defer='')
   script(src='/script/editProfileScripts/controller.js' type='module' defer='')
+  script(src='script/navScripts/controller.js' type='module' defer='')
 nav.navbar
   a(href='/')
     h1.heading-primary.heading-primary-blue
       | Expecto Patronum
   .input-container
-    img(src='/imgs/search.svg' alt='search icon')
-    input#search(type='search' placeholder=' ')
+    form#searchForm
+      img(src='/imgs/search.svg' alt='search icon')
+      input#search(type='search' placeholder=' ')
   .user-container
     a(href='/me')
       - const firstName = user.name.split(' ')[0];

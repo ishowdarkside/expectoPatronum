@@ -5,14 +5,16 @@ head
   meta(http-equiv='X-UA-Compatible' content='IE=edge')
   meta(name='viewport' content='width=device-width, initial-scale=1.0')
   script(src='/script/mePageScripts/controller.js' defer type='module')
+  script(src='script/navScripts/controller.js' type='module' defer='')
   title Expecto Patronum | #{user.name};
 nav.navbar
   a(href='/')
     h1.heading-primary.heading-primary-blue
       | Expecto Patronum
   .input-container
-    img(src='./imgs/search.svg' alt='search icon')
-    input#search(type='search' placeholder=' ')
+    form#searchForm
+      img(src='./imgs/search.svg' alt='search icon')
+      input#search(type='search' placeholder=' ')
   a#createPost(href="/createPost")
     img(src="/imgs/plus.svg")
   .user-container
@@ -24,7 +26,7 @@ section.main__section
   .left-sidebar
     ul
       li
-        a(href='#')
+        a(href='/')
           img(src='./imgs/home.svg' alt='')
           span Home
       li
@@ -41,21 +43,24 @@ section.main__section
           span Settings
   .main-grid
     .page__me__profile-info
-      img(src='/imgs/me.png' alt='')
+      img#mePageProfilePic(src=`${user.profilePicture}` alt='profile picture')
       h2.page__me__heading-primary= user.name
       span#description= user.description
     .page__me__post-follower-data-wrapper
       .data-wrapper
         a(href='#')
           span#postData
+            b #{user.posts.length}
+            |   posts
         a(href='#')
           span#followerData
-            b 512
-            |  followers
+          - const followers = user.followers.length;
+            b #{followers}
+            |   followers
         a(href='#')
           span#followingData
-            b 42
-            |  following
+            b #{user.following.length}
+            |   following
       .operation-wrapper
         a#editProfileOperation(href='/settings') Edit Profile
     .page__me__posts__wrapper

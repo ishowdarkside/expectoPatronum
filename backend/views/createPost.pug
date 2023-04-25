@@ -6,6 +6,7 @@ head
   link(rel='stylesheet' href='./style.css')
   title Expecto Patronum | Create a post
   script(src='script/postScripts.js/controller.js' type='module' defer='')
+  script(src='script/navScripts/controller.js' type='module' defer='')
   script(src='https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js')
 // Zamjeni navbar sa  navbarom iz main.puga
 nav.navbar
@@ -13,8 +14,9 @@ nav.navbar
     h1.heading-primary.heading-primary-blue
       | Expecto Patronum
   .input-container
-    img(src='./imgs/search.svg' alt='search icon')
-    input#search(type='search' placeholder=' ')
+    form#searchForm
+      img(src='./imgs/search.svg' alt='search icon')
+      input#search(type='search' placeholder=' ')
   a#createPost(href="/createPost")
     img(src="/imgs/plus.svg")
   .user-container

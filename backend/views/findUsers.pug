@@ -4,7 +4,7 @@ head
   meta(http-equiv='X-UA-Compatible' content='IE=edge')
   meta(name='viewport' content='width=device-width, initial-scale=1.0')
   script(src='script/navScripts/controller.js' type='module' defer='')
-  link(rel='stylesheet' href='./style.css')
+  link(rel='stylesheet' href='/style.css')
   title Expecto Patronum
 nav.navbar
   a(href='/')
@@ -25,7 +25,7 @@ section.main__section
   .left-sidebar
     ul
       li
-        a(href='/')
+        a(href='#')
           img(src='./imgs/home.svg' alt='')
           span Home
       li
@@ -40,5 +40,9 @@ section.main__section
         a(href='/settings')
           img(src='./imgs/settings.svg' alt='')
           span Settings
-  .main-grid
+  .main-grid.search-user-grid
+    h2.heading-primary.mb-big
+      | Search results for #{searchQuery}
+    - const html = searchResults.length > 0 ? searchResults.map(currUser => {return `<a href="/findUser/${user.id}"><div class="search-data-wrapper"><img src="${currUser.profilePicture}" alt="profile picture"><h2 class="username">${currUser.name}</h2><span class="user-description">${currUser.description ? currUser.description : ''}</span><span class="user-postCount">${currUser.posts.length} posts</span><span class="user-followerCount">${currUser.followers.length} followers</span><span class="user-followingCount">${currUser.following.length} following</span></div></a>`}).join('') : 'no results found';
+    != html
   .right-sidebar

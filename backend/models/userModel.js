@@ -80,6 +80,13 @@ const UserSchema = new mongoose.Schema(
     description: {
       type: String,
     },
+    public: {
+      type: Boolean,
+      default: true,
+    },
+    posts: [{ type: mongoose.Schema.Types.ObjectId, ref: "Post" }],
+    followers: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
+    following: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
   },
   { validateModifiedOnly: true }
 );

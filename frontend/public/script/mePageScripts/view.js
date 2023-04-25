@@ -5,9 +5,16 @@ class PostView {
   async populatePosts(handler) {
     this.#overlay.innerHTML = "";
     const res = await handler();
+    console.log(res);
+    if (res.data.length === 0) {
+      return this.#parentElement.insertAdjacentHTML(
+        "afterbegin",
+        "<span>Nothing to show here</span>"
+      );
+    }
     res.data.forEach((post) => {
       const html = `
-            <div data-identifier="${post._id}" class="postWrapper"><div class="review-overlay"></div><img src="${post.postImage}"></div>`;
+            <div data-identifier="${post._id}" class="postWrapper"><div class="review-overlay"></div><img src="${post.postImage}" alt="photo"></div>`;
       this.#parentElement.insertAdjacentHTML("afterbegin", html);
     });
   }

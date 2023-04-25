@@ -56,7 +56,6 @@ exports.resizePhoto = catchAsync(async (req, res, next) => {
   if (!req.file) return next();
 
   req.file.filename = `user-${req.user.id}-${Date.now()}.jpeg`;
-  console.log(req.file);
 
   await sharp(req.file.buffer)
     .resize(500, 500)
@@ -64,5 +63,12 @@ exports.resizePhoto = catchAsync(async (req, res, next) => {
     .jpeg({ quality: 90 })
     .toFile(`${__dirname}/../../frontend/public/imgs/${req.file.filename}`);
 
+  next();
+});
+
+exports.findUsers = catchAsync(async (req, res, next) => {
+  const searchResults = await UserModel.find({ name: req.query.search });
+  req.searchResults = searchResults;
+  console.log(req.searchResults);
   next();
 });

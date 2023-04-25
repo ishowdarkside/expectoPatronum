@@ -1,0 +1,62 @@
+.search-user-grid {
+  padding: 20rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  a {
+    text-decoration: none;
+  }
+  .search-data-wrapper {
+    background-color: #fff;
+    border-radius: 1rem;
+    box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px,
+      rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+    padding: 2rem;
+
+    width: fit-content;
+    display: grid;
+    grid-column-gap: 2rem;
+    grid-template-rows: repeat(3, 1fr);
+
+    grid-template-columns: min-content repeat(3, max-content);
+
+    img {
+      grid-row: 1 / -1;
+      grid-column: 1 / span 1;
+      width: 10rem;
+      border-radius: 100px;
+
+      padding: 1rem;
+    }
+    .username {
+      color: #546884;
+      font-weight: 600;
+      grid-column: 2 / -1;
+      grid-row: 1 / span 1;
+      font-family: $mont;
+    }
+
+    .user-description {
+      grid-column: 2/ -1;
+      color: rgba(#000, 0.7);
+      font-style: italic;
+      grid-row: 2 / span 1;
+    }
+    .user-postCount {
+      grid-column: 2 / span 1;
+      grid-row: 3 / span 1;
+      color: #000;
+    }
+    .user-followerCount {
+      grid-column: 3 / span 1;
+      grid-row: 3 / span 1;
+      color: #000;
+    }
+
+    .user-followingCount {
+      grid-column: 4 / span 1;
+      grid-row: 3 / span 1;
+      color: #000;
+    }
+  }
+}

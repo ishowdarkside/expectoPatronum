@@ -246,6 +246,7 @@ body {
   flex-direction: column;
   gap: 2rem; }
   .page__me__profile-info img {
+    border-radius: 100px;
     width: 10rem; }
 
 .page__me__post-follower-data-wrapper {
@@ -436,6 +437,53 @@ body {
 
 .page__me__comment-section {
   padding: 1rem; }
+
+.search-user-grid {
+  padding: 20rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem; }
+  .search-user-grid a {
+    text-decoration: none; }
+  .search-user-grid .search-data-wrapper {
+    background-color: #fff;
+    border-radius: 1rem;
+    box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+    padding: 2rem;
+    width: fit-content;
+    display: grid;
+    grid-column-gap: 2rem;
+    grid-template-rows: repeat(3, 1fr);
+    grid-template-columns: min-content repeat(3, max-content); }
+    .search-user-grid .search-data-wrapper img {
+      grid-row: 1 / -1;
+      grid-column: 1 / span 1;
+      width: 10rem;
+      border-radius: 100px;
+      padding: 1rem; }
+    .search-user-grid .search-data-wrapper .username {
+      color: #546884;
+      font-weight: 600;
+      grid-column: 2 / -1;
+      grid-row: 1 / span 1;
+      font-family: "Montserrat", sans-serif; }
+    .search-user-grid .search-data-wrapper .user-description {
+      grid-column: 2/ -1;
+      color: rgba(0, 0, 0, 0.7);
+      font-style: italic;
+      grid-row: 2 / span 1; }
+    .search-user-grid .search-data-wrapper .user-postCount {
+      grid-column: 2 / span 1;
+      grid-row: 3 / span 1;
+      color: #000; }
+    .search-user-grid .search-data-wrapper .user-followerCount {
+      grid-column: 3 / span 1;
+      grid-row: 3 / span 1;
+      color: #000; }
+    .search-user-grid .search-data-wrapper .user-followingCount {
+      grid-column: 4 / span 1;
+      grid-row: 3 / span 1;
+      color: #000; }
 
 .navbar {
   width: 100%;

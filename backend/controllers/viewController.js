@@ -43,3 +43,12 @@ exports.renderCreatePost = (req, res) => {
   const file = path.join(__dirname, "..", "views", "createPost");
   res.render(file, { user: req.user });
 };
+
+exports.renderFindUser = (req, res) => {
+  const file = path.join(__dirname, "..", "views", "findUsers");
+  res.render(file, {
+    user: req.user,
+    searchResults: req.searchResults,
+    searchQuery: req.query.search,
+  });
+};
