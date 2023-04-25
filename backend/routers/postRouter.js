@@ -27,4 +27,11 @@ router.post(
   postController.createPost
 );
 
+router.get("/", authController.protect, postController.getPostCurrUser);
+router.get("/:postId", authController.protect, postController.getSinglePost);
+router.delete(
+  "/:postId",
+  authController.protect,
+  postController.deleteSinglePost
+);
 module.exports = router;

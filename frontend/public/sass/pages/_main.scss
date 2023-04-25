@@ -219,7 +219,18 @@
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
     gap: 1rem;
-    div {
+    .postWrapper {
+      position: relative;
+      cursor: pointer;
+      .review-overlay {
+        position: absolute;
+        width: 100%;
+        transition: all 0.3s ease;
+        height: 100%;
+      }
+      &:hover .review-overlay {
+        background-color: rgba(#000, 0.5);
+      }
     }
     img {
       object-fit: cover;
@@ -280,5 +291,124 @@
       color: #ffff;
       border-radius: 1rem;
     }
+  }
+}
+
+//me page - Post Overlay
+
+.page__me {
+  &__post-overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(#000, 0.6);
+    display: none;
+    align-items: center;
+    justify-content: center;
+
+    #closeOverlay {
+      position: absolute;
+      top: 5%;
+      background-color: transparent;
+      cursor: pointer;
+      outline: none;
+      border: none;
+      font-family: $mont;
+      right: 5%;
+      font-size: 3rem;
+      font-weight: 700;
+      color: #fff;
+    }
+  }
+
+  &__post-popup {
+    display: flex;
+  }
+
+  &__img-wrapper {
+    width: 60rem;
+
+    img {
+      width: 100%;
+      object-fit: cover;
+    }
+  }
+
+  &__about-post {
+    position: relative;
+    width: 30rem;
+    background-color: #ffff;
+
+    .page__me__post-creator {
+      width: 100%;
+
+      top: 0;
+      height: 5rem;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 3rem 1rem;
+      gap: 2rem;
+      border-bottom: 1px solid rgba(#000, 0.2);
+      img {
+        width: 5rem;
+        border-radius: 100px;
+      }
+
+      #deleteCurrentPost {
+        border: none;
+        outline: none;
+        background-color: transparent;
+        cursor: pointer;
+        img {
+          width: 2rem;
+        }
+        margin-left: auto;
+      }
+    }
+  }
+
+  &__operations {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    bottom: 0;
+    align-items: flex-start;
+    padding: 1rem;
+
+    width: 100%;
+    gap: 1rem;
+    #likePost {
+      border: none;
+      background-color: transparent;
+      cursor: pointer;
+      outline: none;
+    }
+    #numLikes {
+      text-decoration: none;
+      color: #546890;
+      font-weight: 600;
+    }
+    #date {
+      font-size: 1.5rem;
+    }
+    form {
+      width: 100%;
+    }
+    #postComment {
+      align-self: stretch;
+      background-color: transparent;
+      border: none;
+      outline: none;
+      padding: 1rem;
+      border-top: 1px solid rgba(#000, 0.2);
+      width: 100%;
+    }
+  }
+
+  &__comment-section {
+    padding: 1rem;
   }
 }

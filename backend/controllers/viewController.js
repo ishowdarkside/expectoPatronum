@@ -40,14 +40,6 @@ exports.renderMe = (req, res) => {
 };
 
 exports.renderCreatePost = (req, res) => {
-  const file = path.join(
-    __dirname,
-    "..",
-    "..",
-    "frontend",
-    "templates",
-    "createPost.html"
-  );
-
-  res.sendFile(file);
+  const file = path.join(__dirname, "..", "views", "createPost");
+  res.render(file, { user: req.user });
 };

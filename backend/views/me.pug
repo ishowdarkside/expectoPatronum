@@ -4,7 +4,8 @@ head
   meta(charset='UTF-8')
   meta(http-equiv='X-UA-Compatible' content='IE=edge')
   meta(name='viewport' content='width=device-width, initial-scale=1.0')
-  title Expecto Patronum | Ajdin Omerovic;
+  script(src='/script/mePageScripts/controller.js' defer type='module')
+  title Expecto Patronum | #{user.name};
 nav.navbar
   a(href='/')
     h1.heading-primary.heading-primary-blue
@@ -12,10 +13,13 @@ nav.navbar
   .input-container
     img(src='./imgs/search.svg' alt='search icon')
     input#search(type='search' placeholder=' ')
+  a#createPost(href="/createPost")
+    img(src="/imgs/plus.svg")
   .user-container
-    a(href='/settings')
-      span#name Ajdin
-      img(src='./imgs/me.svg' alt='user image')
+    a(href='/me')
+      - const firstName = user.name.split(' ')[0];
+      span#name= firstName
+      img(src=`${user.profilePicture}` alt='user image')
 section.main__section
   .left-sidebar
     ul
@@ -38,39 +42,27 @@ section.main__section
   .main-grid
     .page__me__profile-info
       img(src='/imgs/me.png' alt='')
-      h2.page__me__heading-primary Ajdin Omerovic
-      span#description trep guru trep bos
+      h2.page__me__heading-primary= user.name
+      span#description= user.description
     .page__me__post-follower-data-wrapper
       .data-wrapper
         a(href='#')
-          span#followerData
-            b 13
-            |  posts
+          span#postData
         a(href='#')
           span#followerData
             b 512
             |  followers
         a(href='#')
-          span#followerData
+          span#followingData
             b 42
             |  following
       .operation-wrapper
         a#editProfileOperation(href='/settings') Edit Profile
     .page__me__posts__wrapper
-      .options-wrapper
-        a(href='#') POSTS
-        a(href='#') STATUS
       .page__me__posts
-        div
-          img(src='/imgs/6445218292a7c3aca1f25b59-1524217355808-fox_photo-vladimir-zivojinovic002.webp' alt='')
-        div
-          img(src='/imgs/6445218292a7c3aca1f25b59-1524217355808-fox_photo-vladimir-zivojinovic002.webp' alt='')
-        div
-          img(src='/imgs/6445218292a7c3aca1f25b59-1524217355808-fox_photo-vladimir-zivojinovic002.webp' alt='')
-        div
-          img(src='/imgs/6445218292a7c3aca1f25b59-1524217355808-fox_photo-vladimir-zivojinovic002.webp' alt='')
-        div
-          img(src='/imgs/6445218292a7c3aca1f25b59-1524217355808-fox_photo-vladimir-zivojinovic002.webp' alt='')
-        div
-          img(src='/imgs/6445218292a7c3aca1f25b59-1524217355808-fox_photo-vladimir-zivojinovic002.webp' alt='')
+       div 
+       div 
   .right-sidebar
+  .page__me__post-overlay
+#alertWindow 
+  span

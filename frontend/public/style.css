@@ -288,6 +288,16 @@ body {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
   gap: 1rem; }
+  .page__me__posts .postWrapper {
+    position: relative;
+    cursor: pointer; }
+    .page__me__posts .postWrapper .review-overlay {
+      position: absolute;
+      width: 100%;
+      transition: all 0.3s ease;
+      height: 100%; }
+    .page__me__posts .postWrapper:hover .review-overlay {
+      background-color: rgba(0, 0, 0, 0.5); }
   .page__me__posts img {
     object-fit: cover;
     width: 100%; }
@@ -334,6 +344,98 @@ body {
       background-color: #277ffe;
       color: #ffff;
       border-radius: 1rem; }
+
+.page__me__post-overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: none;
+  align-items: center;
+  justify-content: center; }
+  .page__me__post-overlay #closeOverlay {
+    position: absolute;
+    top: 5%;
+    background-color: transparent;
+    cursor: pointer;
+    outline: none;
+    border: none;
+    font-family: "Montserrat", sans-serif;
+    right: 5%;
+    font-size: 3rem;
+    font-weight: 700;
+    color: #fff; }
+
+.page__me__post-popup {
+  display: flex; }
+
+.page__me__img-wrapper {
+  width: 60rem; }
+  .page__me__img-wrapper img {
+    width: 100%;
+    object-fit: cover; }
+
+.page__me__about-post {
+  position: relative;
+  width: 30rem;
+  background-color: #ffff; }
+  .page__me__about-post .page__me__post-creator {
+    width: 100%;
+    top: 0;
+    height: 5rem;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 3rem 1rem;
+    gap: 2rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2); }
+    .page__me__about-post .page__me__post-creator img {
+      width: 5rem;
+      border-radius: 100px; }
+    .page__me__about-post .page__me__post-creator #deleteCurrentPost {
+      border: none;
+      outline: none;
+      background-color: transparent;
+      cursor: pointer;
+      margin-left: auto; }
+      .page__me__about-post .page__me__post-creator #deleteCurrentPost img {
+        width: 2rem; }
+
+.page__me__operations {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  bottom: 0;
+  align-items: flex-start;
+  padding: 1rem;
+  width: 100%;
+  gap: 1rem; }
+  .page__me__operations #likePost {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    outline: none; }
+  .page__me__operations #numLikes {
+    text-decoration: none;
+    color: #546890;
+    font-weight: 600; }
+  .page__me__operations #date {
+    font-size: 1.5rem; }
+  .page__me__operations form {
+    width: 100%; }
+  .page__me__operations #postComment {
+    align-self: stretch;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    padding: 1rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.2);
+    width: 100%; }
+
+.page__me__comment-section {
+  padding: 1rem; }
 
 .navbar {
   width: 100%;

@@ -30,3 +30,33 @@ exports.resizePhoto = catchAsync(async (req, res, next) => {
 
   next();
 });
+
+exports.getPostCurrUser = catchAsync(async (req, res, next) => {
+  const posts = await Post.find({ creator: req.user.id });
+  if (!posts)
+    return res
+      .status(200)
+      .json({ status: "success", message: "Nothing to show here" });
+
+  res.status(200).json({
+    status: "success",
+    data: posts,
+  });
+});
+
+exports.getSinglePost = catchAsync(async (req, res, next) => {
+  const post = await Post.findById(req.params.postId).populate({
+    path: "creator",
+    select: "name profilePicture",
+  });
+
+  res.status(200).json({
+    status: "success",
+    data: post,
+  });
+});
+
+exports.deleteSinglePost = catchAsync(async (req, res, next) => {
+  await Post.findByIdAndDelete(req.params.postId);
+  res.status(204).json({ status: "success" });
+});
