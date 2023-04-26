@@ -69,6 +69,15 @@ exports.resizePhoto = catchAsync(async (req, res, next) => {
 exports.findUsers = catchAsync(async (req, res, next) => {
   const searchResults = await UserModel.find({ name: req.query.search });
   req.searchResults = searchResults;
-  console.log(req.searchResults);
+
+  next();
+});
+
+exports.getUserData = catchAsync(async (req, res, next) => {
+  if (req.params.userId === req.user.id) return res.redirect("/me");
+  //populate this
+  const user = await UserModel.findById(req.params.userId);
+  if (!user) return next("No user found", 404);
+  req.searchUserData = user;
   next();
 });

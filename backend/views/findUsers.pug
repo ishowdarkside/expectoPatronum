@@ -43,6 +43,6 @@ section.main__section
   .main-grid.search-user-grid
     h2.heading-primary.mb-big
       | Search results for #{searchQuery}
-    - const html = searchResults.length > 0 ? searchResults.map(currUser => {return `<a href="/findUser/${user.id}"><div class="search-data-wrapper"><img src="${currUser.profilePicture}" alt="profile picture"><h2 class="username">${currUser.name}</h2><span class="user-description">${currUser.description ? currUser.description : ''}</span><span class="user-postCount">${currUser.posts.length} posts</span><span class="user-followerCount">${currUser.followers.length} followers</span><span class="user-followingCount">${currUser.following.length} following</span></div></a>`}).join('') : 'no results found';
+    - const html = searchResults.length > 0 ? searchResults.map(currUser => {return `<a href="/findUser/${currUser.id}"><div class="search-data-wrapper"><img src="${currUser.profilePicture}" alt="profile picture"><h2 class="username">${currUser.name}</h2><span class="user-description">${currUser.description ? currUser.description : ''}</span><span class="user-postCount">${currUser.posts.length} posts</span><span class="user-followerCount">${currUser.followers.length} followers</span><span class="user-followingCount">${currUser.following.length} following</span></div></a>`}).join('') : 'no results found';
     != html
   .right-sidebar

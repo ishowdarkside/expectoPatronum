@@ -68,3 +68,11 @@ exports.deleteSinglePost = catchAsync(async (req, res, next) => {
 
   res.status(204).json({ status: "success" });
 });
+
+exports.getPostsParamUser = catchAsync(async (req, res, next) => {
+  const posts = await Post.find({ creator: req.params.userId });
+  return res.status(200).json({
+    status: "success",
+    data: posts,
+  });
+});

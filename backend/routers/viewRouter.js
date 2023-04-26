@@ -37,6 +37,11 @@ router.get(
 );
 
 //NEXT STEP GET USER ID WHEN USER CLICKS ON CERTAIN USER AND DISPLAY USERS DATA IF PUBLIC ELSE DISPLAY PRIVATE
-router.get("/findUser:userId", authController.protect);
+router.get(
+  "/findUser/:userId",
+  authController.protect,
+  userController.getUserData,
+  viewController.renderSearchedUser
+);
 
 module.exports = router;

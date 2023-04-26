@@ -1,0 +1,74 @@
+doctype html
+head
+  link(rel='stylesheet' href='/style.css')
+  meta(charset='UTF-8')
+  meta(http-equiv='X-UA-Compatible' content='IE=edge')
+  meta(name='viewport' content='width=device-width, initial-scale=1.0')
+  script(src='/script/navScripts/controller.js' type='module' defer='')
+  script(src='/script/specificUserScripts/controller.js' type='module' defer='')
+
+  title Expecto Patronum | #{searchUserData.name};
+nav.navbar
+  a(href='/')
+    h1.heading-primary.heading-primary-blue
+      | Expecto Patronum
+  .input-container
+    form#searchForm
+      img(src='/imgs/search.svg' alt='search icon')
+      input#search(type='search' placeholder=' ')
+  a#createPost(href="/createPost")
+    img(src="/imgs/plus.svg")
+  .user-container
+    a(href='/me')
+      - const firstName = user.name.split(' ')[0];
+      span#name= firstName
+      img(src=`${user.profilePicture}` alt='user image')
+section.main__section
+  .left-sidebar
+    ul
+      li
+        a(href='/')
+          img(src='/imgs/home.svg' alt='')
+          span Home
+      li
+        a(href='#')
+          img(src='/imgs/message.svg' alt='')
+          span Chat
+      li
+        a(href='#')
+          img(src='/imgs/notification.png' alt='')
+          span Notifications
+      li
+        a(href='/settings')
+          img(src='/imgs/settings.svg' alt='')
+          span Settings
+  .main-grid
+    .page__me__profile-info
+      img#mePageProfilePic(src=`${searchUserData.profilePicture}` alt='profile picture')
+      h2.page__me__heading-primary= searchUserData.name
+      span#description= searchUserData.description
+    .page__me__post-follower-data-wrapper
+      .data-wrapper
+        a(href='#')
+          span#postData
+            b #{searchUserData.posts.length}
+            |   posts
+        a(href='#')
+          span#followerData
+          - const followers = searchUserData.followers.length;
+            b #{followers}
+            |   followers
+        a(href='#')
+          span#followingData
+            b #{searchUserData.following.length}
+            |   following
+      .operation-wrapper
+        a#editProfileOperation(href='#') Follow
+    .page__me__posts__wrapper
+      .page__me__posts
+       div 
+       div 
+  .right-sidebar
+  .page__me__post-overlay
+#alertWindow 
+  span

@@ -1,12 +1,12 @@
-class PostView {
+class SpecUserPosts {
   #parentElement = document.querySelector(".page__me__posts");
   #overlay = document.querySelector(".page__me__post-overlay");
   #alertWindow = document.querySelector("#alertWindow");
   async populatePosts(handler) {
     this.#overlay.innerHTML = "";
     const res = await handler();
-
-    if (res.data.length === 0) {
+    console.log(res);
+    if (res.data === null || res.data.length === 0) {
       return this.#parentElement.insertAdjacentHTML(
         "afterbegin",
         "<span>Nothing to show here</span>"
@@ -14,21 +14,21 @@ class PostView {
     }
     res.data.forEach((post) => {
       const html = `
-            <div data-identifier="${post._id}" class="postWrapper"><div class="review-overlay"></div><img src="${post.postImage}" alt="photo"></div>`;
+              <div data-identifier="${post.id}" class="postWrapper"><div class="review-overlay"></div><img src="${post.postImage}" alt="photo"></div>`;
       this.#parentElement.insertAdjacentHTML("afterbegin", html);
     });
   }
 
-  handleEachPost(handler, deleteHandler) {
+  handleEachPost(handler) {
     this.#parentElement.addEventListener("click", (e) => {
       const post = e.target.closest(".postWrapper");
       if (!post) return;
       const currPost = post.dataset.identifier;
-      this.#displayOverlay(handler, currPost, deleteHandler);
+      this.#displayOverlay(handler, currPost);
     });
   }
 
-  async #displayOverlay(handler, identifier, deleteHandler) {
+  async #displayOverlay(handler, identifier) {
     this.#overlay.style.display = "flex";
     const res = await handler(identifier);
     const html = `
@@ -42,7 +42,6 @@ class PostView {
     <div class="page__me__post-creator">
     <img src="${res.data.creator.profilePicture}">
     <span id="creator">${res.data.creator.name}</span>
-    <button id="deleteCurrentPost"><img src="/imgs/trash.svg"></button>
     </div>
     <div class="page__me__comment-section">
     <span>${res.data.postDescription ? "description:" : ""}</span>
@@ -68,8 +67,8 @@ class PostView {
     this.#overlay.insertAdjacentHTML("afterbegin", html);
 
     this.#handleClosingOverlay();
-    this.#handleDeletingPost(deleteHandler, identifier);
   }
+
   #handleClosingOverlay() {
     this.#overlay
       .querySelector("#closeOverlay")
@@ -78,25 +77,6 @@ class PostView {
         this.#overlay.style.display = "none";
       });
   }
-
-  #handleDeletingPost(handler, identifier) {
-    this.#overlay
-      .querySelector("#deleteCurrentPost")
-      .addEventListener("click", async (e) => {
-        const res = await handler(identifier);
-
-        if (res.includes("successfully")) this.#handleSuccess(res);
-      });
-  }
-
-  #handleSuccess(msg) {
-    this.#alertWindow.style.transform = `translateX(-50%) translateY(0)`;
-    this.#alertWindow.style.backgroundColor = "#4eae4a";
-    this.#alertWindow.querySelector("span").textContent = msg;
-    setTimeout(() => {
-      location.reload(true);
-    }, 2000);
-  }
 }
 
-export default new PostView();
+export default new SpecUserPosts();

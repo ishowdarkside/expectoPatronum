@@ -19,6 +19,7 @@ const upload = multer({
   fileFilter: multerFilter,
 });
 
+//current user creating post
 router.post(
   "/",
   authController.protect,
@@ -26,12 +27,21 @@ router.post(
   postController.resizePhoto,
   postController.createPost
 );
-
+//get all posts from currently logged in user
 router.get("/", authController.protect, postController.getPostCurrUser);
+//get single post by its id
 router.get("/:postId", authController.protect, postController.getSinglePost);
+//delete single post by its id
 router.delete(
   "/:postId",
   authController.protect,
   postController.deleteSinglePost
+);
+
+//get posts from selected user (from paramter that contains id);
+router.get(
+  "/user/:userId",
+  authController.protect,
+  postController.getPostsParamUser
 );
 module.exports = router;
