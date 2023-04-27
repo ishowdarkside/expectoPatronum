@@ -6,9 +6,9 @@ class SpecUserPosts {
   #checkPrivate = document.querySelector(".private-heading");
   async populatePosts(handler) {
     this.#overlay.innerHTML = "";
-    if (this.#checkPrivate) return;
-    const res = await handler();
 
+    const res = await handler();
+    if (res.data === "Private Account") return;
     if (res.data === null || res.data.length === 0) {
       return this.#parentElement.insertAdjacentHTML(
         "afterbegin",

@@ -4,6 +4,7 @@ const catchAsync = require("../utils/catchAsync");
 const AppError = require("../utils/AppError");
 const sharp = require("sharp");
 const fs = require("fs");
+const UserModel = require("../models/userModel");
 
 exports.createPost = catchAsync(async (req, res, next) => {
   const post = await new Post({
@@ -70,6 +71,13 @@ exports.deleteSinglePost = catchAsync(async (req, res, next) => {
 });
 
 exports.getPostsParamUser = catchAsync(async (req, res, next) => {
+  const user = await UserModel.findById(req.params.userId);
+  if (!user.public && !user.followers.includes(req.user.id)) {
+    return res.status(200).json({
+      status: "success",
+      data: "Private Account",
+    });
+  }
   const posts = await Post.find({ creator: req.params.userId });
   return res.status(200).json({
     status: "success",
