@@ -67,7 +67,8 @@ exports.resizePhoto = catchAsync(async (req, res, next) => {
 });
 
 exports.findUsers = catchAsync(async (req, res, next) => {
-  const searchResults = await UserModel.find({ name: req.query.search });
+  const regex = new RegExp(req.query.search, "i");
+  const searchResults = await UserModel.find({ name: { $regex: regex } });
   req.searchResults = searchResults;
 
   next();
@@ -78,6 +79,30 @@ exports.getUserData = catchAsync(async (req, res, next) => {
   //populate this
   const user = await UserModel.findById(req.params.userId);
   if (!user) return next("No user found", 404);
+  if (!user.public && !user.followers.includes(req.user.id)) {
+    req.isPrivate = true;
+  }
   req.searchUserData = user;
   next();
+});
+
+exports.followRequest = catchAsync(async (req, res, next) => {
+  //find user by url
+
+  const targetUser = await UserModel.findById(req.params.userId);
+  //if user public, push currentUser to follower array
+  if (targetUser.public) targetUser.followers.push(req.user.id);
+  //if user private and currentUser already in requested list - remove user from list,once api called
+  if (!targetUser.public && targetUser.requests.includes(req.user.id)) {
+    targetUser.requests.splice(targetUser.requests.indexOf(req.user.id), 1);
+
+    //if user private and doesnt exist in requests list, put him in there
+  } else if (!targetUser.public && !targetUser.requests.includes(req.user.id)) {
+    targetUser.requests.push(req.user.id);
+  }
+  await targetUser.save({ validateBeforeSave: false });
+  res.status(200).json({
+    status: "success",
+    message: "Requested successfully",
+  });
 });

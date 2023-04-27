@@ -8,6 +8,7 @@ const errorMiddleware = (err, req, res, next) => {
     res.status(statusCode).json({
       errorName: err.name,
       errorMessage: err.message,
+      stack: err.stack,
     });
   }
   if (process.env.NODE_ENV === "production") {
@@ -51,6 +52,9 @@ const errorMiddleware = (err, req, res, next) => {
         status: status,
         message: err.message,
       });
+    }
+    if (err.message.startsWith("Cast to ObjectId failed")) {
+      return res.send("<h1>Invalid url, return back</h1>");
     } else
       return res.status(500).json({
         status: "error",

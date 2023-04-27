@@ -49,25 +49,42 @@ section.main__section
       span#description= searchUserData.description
     .page__me__post-follower-data-wrapper
       .data-wrapper
-        a(href='#')
+        if isPrivate === true
           span#postData
-            b #{searchUserData.posts.length}
-            |   posts
-        a(href='#')
+            b #{searchUserData.posts.length} posts
           span#followerData
-          - const followers = searchUserData.followers.length;
-            b #{followers}
-            |   followers
-        a(href='#')
+            b= `${searchUserData.followers.length} followers`
           span#followingData
-            b #{searchUserData.following.length}
-            |   following
+            b #{searchUserData.following.length} following
+        else
+          a(href='#')
+            span#postData
+              b #{searchUserData.posts.length}
+              |   posts
+          a(href='#')
+            span#followerData
+            - const followers = searchUserData.followers.length;
+              b #{followers}
+              |   followers
+          a(href='#')
+            span#followingData
+              b #{searchUserData.following.length}
+              |   following
       .operation-wrapper
+      if searchUserData.requests.includes(user.id)
+        a#editProfileOperation.buttonRequested(href='#') Requested
+      else
         a#editProfileOperation(href='#') Follow
     .page__me__posts__wrapper
-      .page__me__posts
-       div 
-       div 
+      if isPrivate === true
+        .private-wrapper 
+          img(src='/imgs/private.svg')
+        h2.private-heading Private Account
+        p Request a follow to interact with this user
+      else
+        .page__me__posts
+        div 
+        div 
   .right-sidebar
   .page__me__post-overlay
 #alertWindow 

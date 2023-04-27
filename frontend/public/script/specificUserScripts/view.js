@@ -1,11 +1,14 @@
 class SpecUserPosts {
   #parentElement = document.querySelector(".page__me__posts");
   #overlay = document.querySelector(".page__me__post-overlay");
+  #followButton = document.querySelector("#editProfileOperation");
   #alertWindow = document.querySelector("#alertWindow");
+  #checkPrivate = document.querySelector(".private-heading");
   async populatePosts(handler) {
     this.#overlay.innerHTML = "";
+    if (this.#checkPrivate) return;
     const res = await handler();
-    console.log(res);
+
     if (res.data === null || res.data.length === 0) {
       return this.#parentElement.insertAdjacentHTML(
         "afterbegin",
@@ -20,6 +23,7 @@ class SpecUserPosts {
   }
 
   handleEachPost(handler) {
+    if (this.#checkPrivate) return;
     this.#parentElement.addEventListener("click", (e) => {
       const post = e.target.closest(".postWrapper");
       if (!post) return;
@@ -76,6 +80,15 @@ class SpecUserPosts {
         this.#overlay.innerHTML = "";
         this.#overlay.style.display = "none";
       });
+  }
+
+  handleRequestingFollow(handler) {
+    this.#followButton.addEventListener("click", async function (e) {
+      e.preventDefault();
+      const res = await handler();
+      this.textContent = this.textContent === "Follow" ? "Requested" : "Follow";
+      this.classList.toggle("buttonRequested");
+    });
   }
 }
 

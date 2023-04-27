@@ -55,5 +55,9 @@ exports.renderFindUser = (req, res) => {
 
 exports.renderSearchedUser = (req, res) => {
   const file = path.join(__dirname, "..", "views", "specificUser");
-  res.render(file, { user: req.user, searchUserData: req.searchUserData });
+  res.render(file, {
+    user: req.user,
+    searchUserData: req.searchUserData,
+    isPrivate: req.isPrivate,
+  });
 };

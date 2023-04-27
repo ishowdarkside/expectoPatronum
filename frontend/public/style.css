@@ -485,6 +485,14 @@ body {
       grid-row: 3 / span 1;
       color: #000; }
 
+.private-wrapper img {
+  width: 10rem; }
+
+.buttonRequested {
+  background-color: #ffff !important;
+  color: #277ffe !important;
+  border: 1px solid #277ffe !important; }
+
 .navbar {
   width: 100%;
   display: flex;

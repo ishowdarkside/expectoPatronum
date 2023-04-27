@@ -37,4 +37,11 @@ router.patch(
   authController.protect,
   userController.changePassword
 );
+
+//request a  follow
+router.get(
+  "/followUser/:userId",
+  authController.protect,
+  userController.followRequest
+);
 module.exports = router;
