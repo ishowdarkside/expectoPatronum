@@ -30,7 +30,8 @@ router.patch(
   authController.protect,
   upload.single("profilePicture"),
   userController.resizePhoto,
-  userController.updateMe
+  userController.updateMe,
+  userController.transportRequests
 );
 router.patch(
   "/changePassword",

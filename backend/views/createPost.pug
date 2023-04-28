@@ -35,10 +35,12 @@ section.main__section
         a(href='#')
           img(src='./imgs/message.svg' alt='')
           span Chat
-      li
-        a(href='#')
+      li#notifications
+        a(href='/notifications')
           img(src='./imgs/notification.png' alt='')
           span Notifications
+          if user.requests.length > 0
+            .badge= `${user.requests.length > 9 ? '9+' : user.requests.length}`
       li
         a(href='/settings')
           img(src='./imgs/settings.svg' alt='')

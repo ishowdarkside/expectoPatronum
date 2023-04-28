@@ -32,10 +32,12 @@ section.main__section
         a(href='#')
           img(src='/imgs/message.svg' alt='')
           span Chat
-      li
-        a(href='#')
+      li#notifications
+        a(href='/notifications')
           img(src='/imgs/notification.png' alt='')
           span Notifications
+          if user.requests.length > 0
+            .badge= `${user.requests.length > 9 ? '9+' : user.requests.length}`
       li
         a(href='/settings')
           img(src='/imgs/settings.svg' alt='')
@@ -55,6 +57,15 @@ section.main__section
             label(for='description') Description 
             - const description = user.description ? user.description : '';
             input#description(type='text' name='description' value=`${description}`)
+          div 
+            label(for='privatePublic') Profile Access 
+            select(name='privatePublic' form='meForm')
+              if user.public === true
+                option(value='true') Public
+                option(value='false') Private
+              else 
+                option(value='false') Private 
+                option(value='true') Public
           #img-container
             img(src=`${user.profilePicture}` alt='profile pic')
             input#profilePicture(type='file' name='profilePicture')

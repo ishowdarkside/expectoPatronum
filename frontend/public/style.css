@@ -154,6 +154,23 @@ body {
         text-decoration: none;
         color: #546890;
         align-items: center; }
+      .main__section .left-sidebar ul #notifications {
+        position: relative; }
+        .main__section .left-sidebar ul #notifications .badge {
+          width: 1.5rem;
+          height: 1.5rem;
+          border-radius: 100px;
+          background-color: #840808;
+          position: absolute;
+          left: 1.5rem;
+          top: 0;
+          color: #ffff;
+          font-size: 1rem;
+          text-align: center;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 0.2rem; }
   .main__section .main-grid {
     overflow-y: scroll; }
     .main__section .main-grid::-webkit-scrollbar-track {
@@ -187,6 +204,13 @@ body {
     #meForm div img {
       width: 5rem;
       border-radius: 100px; }
+    #meForm div select {
+      border: 1px solid #277ffe;
+      width: 20rem;
+      padding: 1rem;
+      border-radius: 1rem;
+      outline: none;
+      padding: 1rem; }
   #meForm #img-container {
     flex-direction: row;
     align-items: center;

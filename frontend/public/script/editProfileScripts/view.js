@@ -8,7 +8,6 @@ class updateClass {
         e.preventDefault();
         const formData = new FormData(this.#generalForm);
         const res = await handler(formData);
-
         if (res.data.status === "success") {
           this.handleSuccess(res.data.message);
         } else if (res.data.status === "error") {

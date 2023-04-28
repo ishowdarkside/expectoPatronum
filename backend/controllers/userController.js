@@ -5,29 +5,34 @@ const bcrypt = require("bcrypt");
 const sharp = require("sharp");
 
 exports.updateMe = catchAsync(async (req, res, next) => {
+  const user = await UserModel.findById(req.user.id);
   if (req.file) {
-    await UserModel.findByIdAndUpdate(
-      req.user._id,
-      {
-        name: req.body.name,
-        email: req.body.email,
-        description: req.body.description,
-        profilePicture: `/imgs/${req.file?.filename}`,
-      },
-      { runValidators: true }
-    );
+    user.name = req.body.name;
+    user.email = req.body.email;
+    user.description = req.body.description;
+    user.profilePicture = `/imgs/${req.file?.filename}`;
+    user.public = JSON.parse(req.body.privatePublic);
   } else {
-    await UserModel.findByIdAndUpdate(
-      req.user._id,
-      {
-        name: req.body.name,
-        email: req.body.email,
-        description: req.body.description,
-      },
-      { runValidators: true }
-    );
+    user.name = req.body.name;
+    user.email = req.body.email;
+    user.description = req.body.description;
+    user.public = JSON.parse(req.body.privatePublic);
   }
 
+  await user.save({ validateBeforeSave: true });
+  next();
+});
+
+exports.transportRequests = catchAsync(async (req, res, next) => {
+  const user = await UserModel.findById(req.user.id);
+  if (user.public) {
+    user.requests.forEach((el) => {
+      user.followers.push(el);
+      user.requests.splice(user.requests.indexOf(el), 1);
+    });
+
+    await user.save({ validateBeforeSave: false });
+  }
   res.status(200).json({
     status: "success",
     message: "Data successfully updated!",
