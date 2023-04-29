@@ -566,13 +566,14 @@ body {
   justify-content: flex-start; }
   .main-grid .notifications-wrapper .notification-wrapper {
     cursor: pointer;
-    background-color: rgba(0, 0, 0, 0.03);
     border-radius: 1rem;
     height: fit-content;
     align-items: center;
     display: flex;
     justify-content: space-between;
     padding: 1rem 2rem; }
+    .main-grid .notifications-wrapper .notification-wrapper:hover {
+      background-color: rgba(0, 0, 0, 0.03); }
     .main-grid .notifications-wrapper .notification-wrapper .user-info {
       display: grid;
       grid-template-columns: repeat(2, max-content);
@@ -585,7 +586,10 @@ body {
       .main-grid .notifications-wrapper .notification-wrapper .user-info img {
         grid-column: 1 / span 1;
         grid-row: 1 / -1;
-        align-self: center; }
+        align-self: center;
+        width: 5rem;
+        height: 5rem;
+        border-radius: 100px; }
       .main-grid .notifications-wrapper .notification-wrapper .user-info #desc {
         grid-column: 2 / -1;
         grid-row: 2 / span 1;
@@ -663,6 +667,104 @@ body {
       .main-posts-wrapper .post-wrapper .post-data #description {
         font-weight: 600;
         margin: 5px 0; }
+
+.specificPost-grid {
+  display: flex;
+  align-items: center;
+  justify-content: center; }
+
+.specific-post-wrapper {
+  border: 1px solid rgba(49, 49, 49, 0.1);
+  display: grid;
+  height: 50rem;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: min-content 1fr min-content; }
+  .specific-post-wrapper .img-wrapper {
+    grid-column: 1 / span 1;
+    grid-row: 1 / -1;
+    width: 50rem;
+    height: 50rem; }
+    .specific-post-wrapper .img-wrapper img {
+      width: 100%;
+      height: 100%; }
+  .specific-post-wrapper .user-info a {
+    color: #313131;
+    font-weight: 600;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 1rem;
+    gap: 2rem;
+    border-bottom: 1px solid rgba(49, 49, 49, 0.1); }
+    .specific-post-wrapper .user-info a img {
+      width: 4rem;
+      height: 4rem;
+      border-radius: 100px;
+      order: -1; }
+  .specific-post-wrapper .comments {
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    padding: 1rem; }
+    .specific-post-wrapper .comments .comment-wrapper {
+      display: grid;
+      grid-template-columns: min-content 1fr max-content;
+      grid-template-rows: min-content 1fr;
+      column-gap: 1.2rem; }
+      .specific-post-wrapper .comments .comment-wrapper #commentAuthName {
+        font-weight: 600;
+        text-decoration: none;
+        color: #313131;
+        grid-column: 2 / span 1;
+        grid-row: 1 / span 1; }
+      .specific-post-wrapper .comments .comment-wrapper #commentData {
+        font-style: italic;
+        max-width: 35rem;
+        justify-self: start;
+        grid-row: 2 / span 1; }
+      .specific-post-wrapper .comments .comment-wrapper #date {
+        grid-row: 1 / span 1;
+        grid-column: 3 / span 1;
+        font-size: 1.4rem; }
+      .specific-post-wrapper .comments .comment-wrapper #deleteComment {
+        grid-row: 2 / span 1;
+        grid-column: 3 / span 1;
+        font-size: 1.4rem;
+        color: #ff0000;
+        align-self: end;
+        text-decoration: none; }
+      .specific-post-wrapper .comments .comment-wrapper #commentAuthImg {
+        grid-row: 1/ -1;
+        grid-column: 1 / span 1; }
+      .specific-post-wrapper .comments .comment-wrapper img {
+        width: 4rem;
+        height: 4rem;
+        border-radius: 100px; }
+  .specific-post-wrapper .operations {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    border-top: 1px solid rgba(49, 49, 49, 0.1); }
+    .specific-post-wrapper .operations form {
+      display: flex;
+      padding: 1rem; }
+      .specific-post-wrapper .operations form input {
+        width: 100%;
+        border: none;
+        outline: none; }
+      .specific-post-wrapper .operations form button {
+        border: none;
+        outline: none;
+        color: #277ffe;
+        background-color: transparent;
+        font-size: 1.6rem;
+        cursor: pointer; }
+  .specific-post-wrapper .likePost {
+    display: flex;
+    align-items: center;
+    gap: 1rem; }
 
 .navbar {
   width: 100%;

@@ -11,7 +11,9 @@
 
     .notification-wrapper {
       cursor: pointer;
-      background-color: rgba(#000, 0.03);
+      &:hover {
+        background-color: rgba(#000, 0.03);
+      }
       border-radius: 1rem;
       height: fit-content;
       align-items: center;
@@ -33,6 +35,9 @@
           grid-column: 1 / span 1;
           grid-row: 1 / -1;
           align-self: center;
+          width: 5rem;
+          height: 5rem;
+          border-radius: 100px;
         }
         #desc {
           grid-column: 2 / -1;

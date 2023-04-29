@@ -1,4 +1,5 @@
 const Post = require("../models/postModel");
+
 const User = require("../models/userModel");
 const catchAsync = require("../utils/catchAsync");
 const AppError = require("../utils/AppError");
@@ -59,6 +60,7 @@ exports.getSinglePost = catchAsync(async (req, res, next) => {
   res.status(200).json({
     status: "success",
     data: post,
+    currentUser: req.user.id,
   });
 });
 
@@ -97,7 +99,6 @@ exports.getPostsFollowers = catchAsync(async (req, res, next) => {
 });
 
 exports.likePost = catchAsync(async (req, res, next) => {
-  console.log(req.params.postId);
   const post = await Post.findById(req.params.postId);
   if (post.likes.includes(req.user.id)) {
     post.likes.splice(post.likes.indexOf(req.user.id), 1);
@@ -114,4 +115,43 @@ exports.likePost = catchAsync(async (req, res, next) => {
       message: "Liked",
     });
   }
+});
+
+exports.attachPostData = catchAsync(async (req, res, next) => {
+  const post = await Post.findById(req.params.postId)
+    .populate({
+      path: "creator",
+      select: "name profilePicture followers public",
+    })
+    .populate({ path: "comments.creator", select: "name profilePicture" });
+  if (!post.creator.public && !post.creator.followers.includes(req.user.id))
+    return res.send("<h1>Forbidden</h1>");
+  req.postData = post;
+
+  next();
+});
+
+exports.createComment = catchAsync(async (req, res, next) => {
+  const post = await Post.findById(req.params.postId);
+  const comment = { creator: req.user.id, content: req.body.content };
+  post.comments.push(comment);
+
+  await post.save();
+  res.status(201).json({
+    status: "success",
+    message: "Comment created successfully!",
+  });
+});
+
+exports.deleteComment = catchAsync(async (req, res, next) => {
+  const post = await Post.findById(req.params.postId);
+  post.comments.splice(
+    post.comments.findIndex((el) => el.id === req.params.commentId),
+    1
+  );
+  await post.save();
+  res.status(200).json({
+    status: "success",
+    message: "Deleted Successfully!",
+  });
 });

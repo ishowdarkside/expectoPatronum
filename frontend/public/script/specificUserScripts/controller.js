@@ -1,6 +1,6 @@
-import { getPosts, getSinglePost, followUser } from "./model.js";
+import { getPosts, getSinglePost, followUser, likePost } from "./model.js";
 import SpecUserPosts from "./view.js";
 
 SpecUserPosts.populatePosts(getPosts);
-SpecUserPosts.handleEachPost(getSinglePost);
+SpecUserPosts.handleEachPost(getSinglePost, likePost);
 SpecUserPosts.handleRequestingFollow(followUser);

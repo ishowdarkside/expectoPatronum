@@ -9,4 +9,16 @@ router.get(
   postController.likePost
 );
 
+router.post(
+  "/createComment/:postId",
+  authController.protect,
+  postController.createComment
+);
+
+router.delete(
+  "/:postId/:commentId",
+  authController.protect,
+  postController.deleteComment
+);
+
 module.exports = router;

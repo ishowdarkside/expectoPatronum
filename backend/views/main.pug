@@ -45,7 +45,7 @@ section.main__section
           span Settings
   .main-grid
     .main-posts-wrapper
-      if posts.length > 0
+      if posts && posts.length > 0
         each post in posts 
           .post-wrapper(data-post-identifier=`${post.id}`)
             a(href=`/findUser/${post.creator.id}`)
@@ -64,7 +64,7 @@ section.main__section
                 span#likes= `${post.likeCount} likes`
               if post.postDescription
                 span#description= post.postDescription
-              a#comments(href="#")= `${post.commentsCont > 0  ? `View all ${post.commentsCont} comments` : 'Write comment'}`
+              a#comments(href=`/post/${post.id}`)= `${post.commentsCount > 0  ? `View all ${post.commentsCount} comments` : 'Write comment'}`
               span#date= `${new Date(post.createdAt).toLocaleString('en-US',{year:"numeric",month:"short",day:"numeric"})}` 
       else 
         h2.heading-primary Follow other users of Expecto Patronum to share your memories with!

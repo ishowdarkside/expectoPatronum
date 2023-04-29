@@ -57,4 +57,10 @@ router.get(
   viewController.renderNotifications
 );
 
+router.get(
+  "/post/:postId",
+  authController.protect,
+  postController.attachPostData,
+  viewController.renderPost
+);
 module.exports = router;

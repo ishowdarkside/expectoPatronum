@@ -30,8 +30,8 @@ class PostView {
   }
 
   async #displayOverlay(handler, identifier, deleteHandler) {
-    this.#overlay.style.display = "flex";
     const res = await handler(identifier);
+    this.#overlay.style.display = "flex";
     console.log(res);
     const html = `
     
@@ -59,7 +59,7 @@ class PostView {
   
     </div>
     <div class="page__me__operations">
-    <button id="likePost"><img src="/imgs/heart--inactive.svg" alt="like button"></button>
+   
     <a id="numLikes" href="#">${res.data.likeCount} likes</a>
     <span id="date">${new Date(res.data.createdAt).toLocaleDateString("en-US", {
       month: "long",

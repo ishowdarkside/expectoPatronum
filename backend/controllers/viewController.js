@@ -67,3 +67,9 @@ exports.renderNotifications = (req, res) => {
 
   res.render(file, { user: req.user, followRequests: req.followRequests });
 };
+
+exports.renderPost = (req, res) => {
+  const file = path.join(__dirname, "..", "views", "specificPost");
+
+  res.render(file, { user: req.user, postData: req.postData });
+};

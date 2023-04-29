@@ -1,0 +1,78 @@
+doctype html
+head
+  meta(charset='UTF-8')
+  meta(http-equiv='X-UA-Compatible' content='IE=edge')
+  meta(name='viewport' content='width=device-width, initial-scale=1.0')
+  script(src='/script/navScripts/controller.js' type='module' defer='')
+  script(src='/script/specificPostScripts/controller.js' type='module' defer='')
+  link(rel='stylesheet' href='/style.css')
+  title Expecto Patronum
+nav.navbar
+  a(href='/')
+    h1.heading-primary.heading-primary-blue
+      | Expecto Patronum
+  .input-container
+    form#searchForm
+      img(src='/imgs/search.svg' alt='search icon')
+      input#search(type='search' placeholder=' ')
+  a#createPost(href="/createPost")
+    img(src="/imgs/plus.svg")
+  .user-container
+    a(href='/me')
+      - const firstName = user.name.split(' ')[0];
+      span#name= firstName
+      img(src=`${user.profilePicture}` alt='user image')
+section.main__section
+  .left-sidebar
+    ul
+      li
+        a(href='/')
+          img(src='/imgs/home.svg' alt='')
+          span Home
+      li
+        a(href='#')
+          img(src='/imgs/message.svg' alt='')
+          span Chat
+      li#notifications
+        a(href='/notifications')
+          img(src='/imgs/notification.png' alt='')
+          span Notifications
+          if user.requests.length > 0
+            .badge= `${user.requests.length > 9 ? '9+' : user.requests.length}`
+      li
+        a(href='/settings')
+          img(src='/imgs/settings.svg' alt='')
+          span Settings
+  .main-grid(class='specificPost-grid')
+    .specific-post-wrapper(data-identifier=`${postData.id}`)
+        .img-wrapper 
+            img(src=`${postData.postImage}`)
+        .user-info
+          a(href=`/findUser/${postData.creator.id}`)
+            span= postData.creator.name
+            img(src=`${postData.creator.profilePicture}`)
+        .comments
+            if postData.comments.length > 0
+                each comment in postData.comments
+                  .comment-wrapper(data-identifier=`${comment.id}` data-post=`${postData.id}`)
+                    a#commentAuthImg(href=`/findUser/${comment.creator.id}`)
+                      img(src=`${comment.creator.profilePicture}`)
+                    a#commentAuthName(href=`/findUser/${comment.creator.id}`)
+                      span#commentAuthor= comment.creator.name
+                    span#commentData= comment.content
+                    span#date #{comment.createdAt.toLocaleString('en-US',{  month: 'short', day: 'numeric'})}
+                    if comment.creator.id === user.id
+                      a#deleteComment(href='#') Delete
+        .operations 
+            .likePost(href='#')
+                if postData.likes.includes(user.id)
+                    img(src='/imgs/heart--active.svg')
+                else 
+                    img(src='/imgs/heart--inactive.svg')
+                span#likeCount= `${postData.likeCount} likes`
+            form
+                input(type='text' id='writeComment' name='writeComment' placeholder='Write comment')
+                button#postComment Post
+  .right-sidebar
+#alertWindow 
+  span
