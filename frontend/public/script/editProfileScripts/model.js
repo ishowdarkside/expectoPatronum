@@ -35,3 +35,9 @@ export const updatePassword = async (
     throw new Error(err);
   }
 };
+
+export const logout = async function () {
+  const res = await fetch("/api/users/logout");
+  const data = await res.json();
+  return data;
+};

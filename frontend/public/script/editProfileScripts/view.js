@@ -2,6 +2,7 @@ class updateClass {
   #generalForm = document.querySelector("#meForm");
   #passwordForm = document.querySelector("#passwordForm");
   #alertWindow = document.querySelector("#alertWindow");
+  #logoutBtn = document.querySelector("#logout");
   handleGeneralForm(handler) {
     this.#generalForm.addEventListener("submit", async (e) => {
       try {
@@ -59,6 +60,20 @@ class updateClass {
         }, 2000);
       } else if (res.status === "fail") {
         this.handleError(res.message);
+      }
+    });
+  }
+
+  handleLogout(handler) {
+    this.#logoutBtn.addEventListener("click", async (e) => {
+      e.preventDefault();
+      const res = await handler();
+      console.log(res);
+      if (res.status === "success") {
+        this.handleSuccess(res.message);
+        setTimeout(() => {
+          location.reload(true);
+        }, 2000);
       }
     });
   }

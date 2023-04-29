@@ -3,6 +3,7 @@ const UserModel = require("../models/userModel");
 const AppError = require("../utils/AppError");
 const bcrypt = require("bcrypt");
 const sharp = require("sharp");
+const { ObjectId } = require("mongodb");
 
 exports.updateMe = catchAsync(async (req, res, next) => {
   const user = await UserModel.findById(req.user.id);
@@ -95,19 +96,116 @@ exports.followRequest = catchAsync(async (req, res, next) => {
   //find user by url
 
   const targetUser = await UserModel.findById(req.params.userId);
+  const currentUser = await UserModel.findById(req.user.id);
   //if user public, push currentUser to follower array
-  if (targetUser.public) targetUser.followers.push(req.user.id);
+  if (targetUser.public) {
+    if (targetUser.followers.includes(req.user.id)) {
+      targetUser.followers.splice(targetUser.followers.indexOf(req.user.id), 1);
+      await targetUser.save({ validateBeforeSave: false });
+      return res.status(200).json({
+        status: "success",
+        message: "Unfollowed successfully!",
+      });
+    } else {
+      targetUser.followers.push(req.user.id);
+      await targetUser.save({ validateBeforeSave: false });
+      return res.status(200).json({
+        status: "success",
+        message: "Started following successfully!",
+      });
+    }
+  }
   //if user private and currentUser already in requested list - remove user from list,once api called
   if (!targetUser.public && targetUser.requests.includes(req.user.id)) {
     targetUser.requests.splice(targetUser.requests.indexOf(req.user.id), 1);
-
-    //if user private and doesnt exist in requests list, put him in there
-  } else if (!targetUser.public && !targetUser.requests.includes(req.user.id)) {
-    targetUser.requests.push(req.user.id);
+    await targetUser.save({ validateBeforeSave: false });
+    res.status(200).json({
+      status: "success",
+      message: "unrequested follow successfully",
+    });
   }
-  await targetUser.save({ validateBeforeSave: false });
+  if (!targetUser.public && targetUser.followers.includes(req.user.id)) {
+    targetUser.followers.splice(targetUser.followers.indexOf(req.user.id), 1);
+    currentUser.following.splice(
+      currentUser.following.indexOf(targetUser.id),
+      1
+    );
+    await currentUser.save({ validateBeforeSave: false });
+    await targetUser.save({ validateBeforeSave: false });
+    res.status(200).json({
+      status: "success",
+      message: "Unfollowed private successfully!",
+      private: true,
+    });
+  }
+  //if user private and doesnt exist in requests list, put him in there
+  else if (
+    !targetUser.public &&
+    !targetUser.requests.includes(req.user.id) &&
+    !targetUser.followers.includes(req.user.id)
+  ) {
+    targetUser.requests.push(req.user.id);
+    await targetUser.save({ validateBeforeSave: false });
+    res.status(200).json({
+      status: "success",
+      message: "Requested successfully",
+    });
+  }
+});
+
+exports.logoutUser = (req, res, next) => {
+  res.cookie("jwt", "", { expires: new Date(Date.now() - 2000) });
+
   res.status(200).json({
     status: "success",
-    message: "Requested successfully",
+    message: "Logged out successfully!",
+  });
+};
+
+exports.populateRequests = catchAsync(async (req, res, next) => {
+  const currentUser = await UserModel.findById(req.user.id)
+    .select("requests")
+    .populate({ path: "requests", select: "name description profilePicture" });
+
+  req.followRequests = currentUser.requests;
+
+  next();
+});
+
+exports.acceptRequest = catchAsync(async (req, res, next) => {
+  const me = await UserModel.findById(req.user.id).populate({
+    path: "requests",
+    select: "name email",
+  });
+  //put requester inside followers array
+  const requester = me.requests.find((el) => el.id === req.params.identifier);
+  if (!requester)
+    return res.status(400, { status: "fail", message: "Bad request!" });
+  me.followers.push(requester._id);
+  //remove requester from requests
+  me.requests.splice(
+    me.requests.findIndex((el) => el.id === req.params.id),
+    1
+  );
+  const requesterData = await UserModel.findById(req.params.identifier);
+  if (!requesterData)
+    return res.status(400, { status: "fail", message: "Bad request!" });
+  requesterData.following.push(me._id);
+  await requesterData.save({ validateBeforeSave: false });
+  await me.save({ validateBeforeSave: false });
+
+  res.status(200).json({
+    status: "success",
+    message: "accepted successfully!",
+  });
+});
+
+exports.declineRequest = catchAsync(async (req, res, next) => {
+  const me = await UserModel.findById(req.user.id);
+  me.requests.splice(me.requests.indexOf(req.params.identifier), 1);
+  await me.save();
+  res.status(200).json({
+    status: "success",
+    message: "declined successfully",
   });
 });

@@ -36,15 +36,16 @@
       #notifications {
         position: relative;
         .badge {
-          width: 1.5rem;
-          height: 1.5rem;
+          width: 2rem;
+          height: 2rem;
           border-radius: 100px;
-          background-color: #840808;
+          background-color: #ff3040;
           position: absolute;
           left: 1.5rem;
           top: 0;
           color: #ffff;
-          font-size: 1rem;
+          font-size: 1.2rem;
+          font-weight: 600;
           text-align: center;
           display: flex;
           align-items: center;
@@ -59,6 +60,7 @@
   }
 
   .main-grid {
+    padding-top: 10rem !important;
     overflow-y: scroll;
     &::-webkit-scrollbar-track {
       background-color: #b4b4b4; /* Set color of track */
@@ -109,6 +111,17 @@
       border-radius: 1rem;
       outline: none;
       padding: 1rem;
+    }
+
+    #profilePicture {
+      display: none;
+    }
+
+    #profilePictureLabel {
+      color: $blue;
+      text-decoration: underline;
+      cursor: pointer;
+      margin-left: 2rem;
     }
   }
 
@@ -177,6 +190,15 @@
       font-family: $mont;
       align-self: flex-end;
     }
+  }
+  #logout {
+    background-color: #840808;
+    color: #ffff;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    padding: 1rem 2rem;
+    border-radius: 1rem;
   }
 }
 
@@ -251,6 +273,7 @@
     gap: 1rem;
     .postWrapper {
       position: relative;
+      width: 35rem;
       cursor: pointer;
       .review-overlay {
         position: absolute;
@@ -337,6 +360,7 @@
     display: none;
     align-items: center;
     justify-content: center;
+    z-index: 999;
 
     #closeOverlay {
       position: absolute;

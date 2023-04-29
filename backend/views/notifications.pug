@@ -1,0 +1,61 @@
+doctype html
+head
+  meta(charset='UTF-8')
+  meta(http-equiv='X-UA-Compatible' content='IE=edge')
+  meta(name='viewport' content='width=device-width, initial-scale=1.0')
+  script(src='script/navScripts/controller.js' type='module' defer='')
+  script(src='script/notificationScripts/controller.js' type='module' defer='')
+  link(rel='stylesheet' href='./style.css')
+  title Expecto Patronum
+nav.navbar
+  a(href='/')
+    h1.heading-primary.heading-primary-blue
+      | Expecto Patronum
+  .input-container
+    form#searchForm
+      img(src='./imgs/search.svg' alt='search icon')
+      input#search(type='search' placeholder=' ')
+  a#createPost(href="/createPost")
+    img(src="/imgs/plus.svg")
+  .user-container
+    a(href='/me')
+      - const firstName = user.name.split(' ')[0];
+      span#name= firstName
+      img(src=`${user.profilePicture}` alt='user image')
+section.main__section
+  .left-sidebar
+    ul
+      li
+        a(href='/')
+          img(src='./imgs/home.svg' alt='')
+          span Home
+      li
+        a(href='#')
+          img(src='./imgs/message.svg' alt='')
+          span Chat
+      li#notifications
+        a(href='/notifications')
+          img(src='./imgs/notification.png' alt='')
+          span Notifications
+          if user.requests.length > 0
+            .badge= `${user.requests.length > 9 ? '9+' : user.requests.length}`
+      li
+        a(href='/settings')
+          img(src='./imgs/settings.svg' alt='')
+          span Settings
+  .main-grid
+    .notifications-wrapper
+      h2.heading-primary Follow Requests
+      each request in followRequests
+        .notification-wrapper(data-identifier=`${request.id}`)
+          .user-info 
+            img(src=`${request.profilePicture}`)
+            span#name= request.name 
+            span#desc= request.description
+          .operations-wrapper 
+            a.acceptRequest(href='#') Accept 
+            a.declineRequest(href='#') Decline
+
+  .right-sidebar
+#alertWindow
+  span

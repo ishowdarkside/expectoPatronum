@@ -124,6 +124,7 @@ body {
   color: #fff;
   transition: all 0.4s ease;
   top: 0;
+  z-index: 9999;
   left: 50%;
   transform: translateX(-50%) translateY(-6rem); }
 
@@ -157,21 +158,23 @@ body {
       .main__section .left-sidebar ul #notifications {
         position: relative; }
         .main__section .left-sidebar ul #notifications .badge {
-          width: 1.5rem;
-          height: 1.5rem;
+          width: 2rem;
+          height: 2rem;
           border-radius: 100px;
-          background-color: #840808;
+          background-color: #ff3040;
           position: absolute;
           left: 1.5rem;
           top: 0;
           color: #ffff;
-          font-size: 1rem;
+          font-size: 1.2rem;
+          font-weight: 600;
           text-align: center;
           display: flex;
           align-items: center;
           justify-content: center;
           padding: 0.2rem; }
   .main__section .main-grid {
+    padding-top: 10rem !important;
     overflow-y: scroll; }
     .main__section .main-grid::-webkit-scrollbar-track {
       background-color: #b4b4b4;
@@ -211,6 +214,13 @@ body {
       border-radius: 1rem;
       outline: none;
       padding: 1rem; }
+    #meForm div #profilePicture {
+      display: none; }
+    #meForm div #profilePictureLabel {
+      color: #277ffe;
+      text-decoration: underline;
+      cursor: pointer;
+      margin-left: 2rem; }
   #meForm #img-container {
     flex-direction: row;
     align-items: center;
@@ -259,6 +269,14 @@ body {
       text-transform: uppercase;
       font-family: "Montserrat", sans-serif;
       align-self: flex-end; }
+  .change-password-wrapper #logout {
+    background-color: #840808;
+    color: #ffff;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    padding: 1rem 2rem;
+    border-radius: 1rem; }
 
 .general-wrapper {
   width: 50rem; }
@@ -315,6 +333,7 @@ body {
   gap: 1rem; }
   .page__me__posts .postWrapper {
     position: relative;
+    width: 35rem;
     cursor: pointer; }
     .page__me__posts .postWrapper .review-overlay {
       position: absolute;
@@ -379,7 +398,8 @@ body {
   background-color: rgba(0, 0, 0, 0.6);
   display: none;
   align-items: center;
-  justify-content: center; }
+  justify-content: center;
+  z-index: 999; }
   .page__me__post-overlay #closeOverlay {
     position: absolute;
     top: 5%;
@@ -517,6 +537,61 @@ body {
   color: #277ffe !important;
   border: 1px solid #277ffe !important; }
 
+.followingSpecUser {
+  background-color: #ffff !important;
+  color: #277ffe !important;
+  border: 1px solid #277ffe !important; }
+
+.main-grid .notifications-wrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 1rem;
+  justify-content: flex-start; }
+  .main-grid .notifications-wrapper .notification-wrapper {
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.03);
+    border-radius: 1rem;
+    height: fit-content;
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 2rem; }
+    .main-grid .notifications-wrapper .notification-wrapper .user-info {
+      display: grid;
+      grid-template-columns: repeat(2, max-content);
+      grid-template-rows: repeat(2, 1fr);
+      column-gap: 1rem; }
+      .main-grid .notifications-wrapper .notification-wrapper .user-info #name {
+        grid-column: 2 / span 1;
+        font-weight: 600;
+        grid-row: 1 / span 1; }
+      .main-grid .notifications-wrapper .notification-wrapper .user-info img {
+        grid-column: 1 / span 1;
+        grid-row: 1 / -1;
+        align-self: center; }
+      .main-grid .notifications-wrapper .notification-wrapper .user-info #desc {
+        grid-column: 2 / -1;
+        grid-row: 2 / span 1;
+        font-style: italic; }
+    .main-grid .notifications-wrapper .notification-wrapper .operations-wrapper {
+      display: flex;
+      gap: 3rem; }
+      .main-grid .notifications-wrapper .notification-wrapper .operations-wrapper .acceptRequest {
+        padding: 1rem 2rem;
+        background-color: #277ffe;
+        text-decoration: none;
+        border-radius: 1rem;
+        color: #ffff; }
+      .main-grid .notifications-wrapper .notification-wrapper .operations-wrapper .declineRequest {
+        padding: 1rem 2rem;
+        background-color: #ff3040;
+        text-decoration: none;
+        border-radius: 1rem;
+        color: #ffff; }
+
 .navbar {
   width: 100%;
   display: flex;
@@ -527,7 +602,9 @@ body {
   justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid #dbdbdb;
-  position: fixed; }
+  position: fixed;
+  z-index: 99;
+  left: 0; }
   .navbar a {
     text-decoration: none; }
   .navbar .user-container {

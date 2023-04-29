@@ -73,8 +73,10 @@ section.main__section
               b #{searchUserData.following.length}
               |   following
       .operation-wrapper
-      if searchUserData.requests.includes(user.id)
+      if !searchUserData.public && searchUserData.requests.includes(user.id)
         a#editProfileOperation.buttonRequested(href='#') Requested
+      else if searchUserData.followers.includes(user.id)
+        a#editProfileOperation(href='#' class='followingSpecUser') Following
       else
         a#editProfileOperation(href='#') Follow
     .page__me__posts__wrapper

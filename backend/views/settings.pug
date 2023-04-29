@@ -68,6 +68,7 @@ section.main__section
                 option(value='true') Public
           #img-container
             img(src=`${user.profilePicture}` alt='profile pic')
+            label#profilePictureLabel(for='profilePicture') Choose new photo
             input#profilePicture(type='file' name='profilePicture')
           button#submitChanges.form-btn.form-btn-blue
             | Submit
@@ -86,6 +87,8 @@ section.main__section
             input#newPasswordConfirm(type='password' placeholder='*********' name='newPasswordConfirm')
           button#submitPasswordChanges.form-btn.form-btn-blue
             | Submit
+          span Logout of current account
+          button#logout Logout
   .right-sidebar RIGHT
 #alertWindow
   span

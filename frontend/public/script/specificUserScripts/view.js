@@ -86,8 +86,29 @@ class SpecUserPosts {
     this.#followButton.addEventListener("click", async function (e) {
       e.preventDefault();
       const res = await handler();
-      this.textContent = this.textContent === "Follow" ? "Requested" : "Follow";
-      this.classList.toggle("buttonRequested");
+      console.log(res);
+
+      if (res.private) {
+        this.textContent = "Follow";
+        this.classList.remove("followingSpecUser");
+        location.reload(true);
+      }
+      if (res.message.startsWith("Started following")) {
+        this.textContent = "Following";
+        this.classList.add("followingSpecUser");
+      }
+      if (res.message.startsWith("Unfollowed")) {
+        this.textContent = "Follow";
+        this.classList.remove("followingSpecUser");
+      }
+      if (res.message.startsWith("unrequested")) {
+        this.textContent = "Follow";
+        this.classList.remove("buttonRequested");
+      }
+      if (res.message.startsWith("Requested")) {
+        this.textContent = "Requested";
+        this.classList.add("buttonRequested");
+      }
     });
   }
 }

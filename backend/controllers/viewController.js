@@ -61,3 +61,9 @@ exports.renderSearchedUser = (req, res) => {
     isPrivate: req.isPrivate,
   });
 };
+
+exports.renderNotifications = (req, res) => {
+  const file = path.join(__dirname, "..", "views", "notifications");
+
+  res.render(file, { user: req.user, followRequests: req.followRequests });
+};

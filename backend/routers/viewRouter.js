@@ -44,4 +44,11 @@ router.get(
   viewController.renderSearchedUser
 );
 
+router.get(
+  "/notifications",
+  authController.protect,
+  userController.populateRequests,
+  viewController.renderNotifications
+);
+
 module.exports = router;

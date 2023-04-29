@@ -45,4 +45,16 @@ router.get(
   authController.protect,
   userController.followRequest
 );
+
+router.get("/logout", authController.protect, userController.logoutUser);
+router.get(
+  "/acceptRequest/:identifier",
+  authController.protect,
+  userController.acceptRequest
+);
+router.get(
+  "/declineRequest/:identifier",
+  authController.protect,
+  userController.declineRequest
+);
 module.exports = router;
