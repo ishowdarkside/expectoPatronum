@@ -101,6 +101,12 @@ exports.followRequest = catchAsync(async (req, res, next) => {
   if (targetUser.public) {
     if (targetUser.followers.includes(req.user.id)) {
       targetUser.followers.splice(targetUser.followers.indexOf(req.user.id), 1);
+      //remove target user from current users data
+      currentUser.following.splice(
+        currentUser.following.indexOf(targetUser.id),
+        1
+      );
+      await currentUser.save({ validateBeforeSave: false });
       await targetUser.save({ validateBeforeSave: false });
       return res.status(200).json({
         status: "success",
@@ -108,6 +114,8 @@ exports.followRequest = catchAsync(async (req, res, next) => {
       });
     } else {
       targetUser.followers.push(req.user.id);
+      currentUser.following.push(targetUser.id);
+      await currentUser.save({ validateBeforeSave: false });
       await targetUser.save({ validateBeforeSave: false });
       return res.status(200).json({
         status: "success",

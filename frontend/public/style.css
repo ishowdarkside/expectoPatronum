@@ -333,7 +333,6 @@ body {
   gap: 1rem; }
   .page__me__posts .postWrapper {
     position: relative;
-    width: 35rem;
     cursor: pointer; }
     .page__me__posts .postWrapper .review-overlay {
       position: absolute;
