@@ -316,24 +316,17 @@ body {
 .page__me__posts__wrapper {
   margin-top: 5rem;
   padding: 3rem; }
-  .page__me__posts__wrapper .options-wrapper {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    gap: 3rem; }
-    .page__me__posts__wrapper .options-wrapper a {
-      color: #546890;
-      text-decoration: none;
-      font-weight: 600; }
 
 .page__me__posts {
   margin-top: 5rem;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(35rem, min-content));
   gap: 1rem; }
   .page__me__posts .postWrapper {
     position: relative;
-    cursor: pointer; }
+    cursor: pointer;
+    width: 35rem;
+    height: 35rem; }
     .page__me__posts .postWrapper .review-overlay {
       position: absolute;
       width: 100%;
@@ -344,6 +337,10 @@ body {
   .page__me__posts img {
     object-fit: cover;
     width: 100%; }
+  .page__me__posts .lazyLoader {
+    width: 35rem;
+    height: 35rem;
+    background-color: #eee; }
 
 .createPost__page {
   height: 100%;
@@ -414,11 +411,29 @@ body {
 
 .page__me__post-popup {
   display: flex; }
+  .page__me__post-popup .page__me__about-post .page__me__comment-section img {
+    width: 5rem;
+    height: 5rem;
+    grid-column: 1 / span 1;
+    grid-row: 1 / -1;
+    border-radius: 100px; }
+  .page__me__post-popup .page__me__about-post .page__me__comment-section b {
+    color: #313131; }
+  .page__me__post-popup .page__me__about-post .page__me__comment-section a {
+    display: grid;
+    column-gap: 1rem;
+    grid-template-columns: min-content 1fr;
+    grid-template-rows: repeat(2, min-content);
+    text-decoration: none;
+    color: #808080; }
+    .page__me__post-popup .page__me__about-post .page__me__comment-section a span {
+      font-size: 1.5rem; }
 
 .page__me__img-wrapper {
   width: 60rem; }
   .page__me__img-wrapper img {
     width: 100%;
+    height: 100%;
     object-fit: cover; }
 
 .page__me__about-post {
@@ -590,6 +605,64 @@ body {
         text-decoration: none;
         border-radius: 1rem;
         color: #ffff; }
+
+.main-posts-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 8rem; }
+  .main-posts-wrapper .post-wrapper {
+    border-bottom: 1px solid rgba(49, 49, 49, 0.2); }
+    .main-posts-wrapper .post-wrapper a {
+      text-decoration: none;
+      color: #313131;
+      font-weight: 600; }
+    .main-posts-wrapper .post-wrapper .user-data-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 1rem;
+      border-top: 1px solid rgba(49, 49, 49, 0.2);
+      border-top-left-radius: 1rem;
+      border-top-right-radius: 1rem;
+      border-left: 1px solid rgba(49, 49, 49, 0.2);
+      border-right: 1px solid rgba(49, 49, 49, 0.2);
+      padding: 1rem; }
+      .main-posts-wrapper .post-wrapper .user-data-wrapper img {
+        width: 3rem;
+        height: 3rem;
+        border-radius: 100px; }
+    .main-posts-wrapper .post-wrapper .img-wrapper {
+      width: 50rem;
+      height: 50rem; }
+      .main-posts-wrapper .post-wrapper .img-wrapper img {
+        object-fit: cover;
+        width: 100%;
+        height: 100%; }
+    .main-posts-wrapper .post-wrapper .post-data {
+      padding: 1rem;
+      background-color: #ffff;
+      display: flex;
+      flex-direction: column; }
+      .main-posts-wrapper .post-wrapper .post-data .like-wrapper {
+        border-bottom: 1px solid rgba(49, 49, 49, 0.1);
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 1rem; }
+      .main-posts-wrapper .post-wrapper .post-data #creator {
+        font-weight: 600; }
+      .main-posts-wrapper .post-wrapper .post-data #date {
+        font-size: 1.5rem;
+        margin-top: 1rem; }
+      .main-posts-wrapper .post-wrapper .post-data #comments {
+        color: #808080;
+        text-decoration: none;
+        font-size: 1.6rem; }
+      .main-posts-wrapper .post-wrapper .post-data #description {
+        font-weight: 600;
+        margin: 5px 0; }
 
 .navbar {
   width: 100%;

@@ -5,13 +5,14 @@ class PostView {
   async populatePosts(handler) {
     this.#overlay.innerHTML = "";
     const res = await handler();
-
+    this.#parentElement.innerHTML = "";
     if (res.data.length === 0) {
       return this.#parentElement.insertAdjacentHTML(
         "afterbegin",
         "<span>Nothing to show here</span>"
       );
     }
+
     res.data.forEach((post) => {
       const html = `
             <div data-identifier="${post._id}" class="postWrapper"><div class="review-overlay"></div><img src="${post.postImage}" alt="photo"></div>`;
@@ -31,6 +32,7 @@ class PostView {
   async #displayOverlay(handler, identifier, deleteHandler) {
     this.#overlay.style.display = "flex";
     const res = await handler(identifier);
+    console.log(res);
     const html = `
     
     <button id="closeOverlay">X</button>
@@ -45,10 +47,16 @@ class PostView {
     <button id="deleteCurrentPost"><img src="/imgs/trash.svg"></button>
     </div>
     <div class="page__me__comment-section">
-    <span>${res.data.postDescription ? "description:" : ""}</span>
-    <span id="#description">${
-      res.data.postDescription ? res.data.postDescription : ""
-    }</span>
+    ${
+      res.data.postDescription
+        ? `<a href="/findUser/${res.data.creator._id}"><img src="${
+            res.data.creator.profilePicture
+          }"> <span><b>${res.data.creator.name.split(" ")[0]}</b> ${
+            res.data.postDescription
+          }</span></a>`
+        : ""
+    }
+  
     </div>
     <div class="page__me__operations">
     <button id="likePost"><img src="/imgs/heart--inactive.svg" alt="like button"></button>

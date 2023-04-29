@@ -44,4 +44,12 @@ router.get(
   authController.protect,
   postController.getPostsParamUser
 );
+
+//get posts from users current User follows
+router.get(
+  "/getPostsFollowers/getData",
+  authController.protect,
+  postController.getPostsFollowers
+);
+
 module.exports = router;

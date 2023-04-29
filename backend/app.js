@@ -7,6 +7,7 @@ const errorMiddleware = require("./controllers/errorController");
 const viewRouter = require("./routers/viewRouter");
 const multer = require("multer");
 const postRouter = require("./routers/postRouter");
+const postOperationsRouter = require("./routers/postOperations");
 dotenv.config({ path: `${__dirname}/../config.env` });
 const app = express();
 
@@ -23,6 +24,7 @@ app.use(express.json());
 //Routing
 app.use("/api/users", userRouter);
 app.use("/api/posts", postRouter);
+app.use("/api/postOperations", postOperationsRouter);
 //view rendering
 app.use("/", viewRouter);
 

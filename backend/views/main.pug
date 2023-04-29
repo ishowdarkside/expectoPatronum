@@ -4,6 +4,7 @@ head
   meta(http-equiv='X-UA-Compatible' content='IE=edge')
   meta(name='viewport' content='width=device-width, initial-scale=1.0')
   script(src='script/navScripts/controller.js' type='module' defer='')
+  script(src='script/mainPageScripts/controller.js' type='module' defer='')
   link(rel='stylesheet' href='./style.css')
   title Expecto Patronum
 nav.navbar
@@ -43,4 +44,28 @@ section.main__section
           img(src='./imgs/settings.svg' alt='')
           span Settings
   .main-grid
+    .main-posts-wrapper
+      if posts.length > 0
+        each post in posts 
+          .post-wrapper(data-post-identifier=`${post.id}`)
+            a(href=`/findUser/${post.creator.id}`)
+              .user-data-wrapper(data-identifier=`${post.creator.id}`)
+                img#postCreatorImg(src=`${post.creator.profilePicture}`)
+                span#postCreatorName= post.creator.name
+            .img-wrapper
+              img(src=`${post.postImage}`)
+            .post-data
+              .like-wrapper
+                a.likeImage(href="#")
+                if post.likes.includes(user.id)
+                  img.likeIcon(src='/imgs/heart--active.svg')
+                else 
+                  img.likeIcon(src='/imgs/heart--inactive.svg')
+                span#likes= `${post.likeCount} likes`
+              if post.postDescription
+                span#description= post.postDescription
+              a#comments(href="#")= `${post.commentsCont > 0  ? `View all ${post.commentsCont} comments` : 'Write comment'}`
+              span#date= `${new Date(post.createdAt).toLocaleString('en-US',{year:"numeric",month:"short",day:"numeric"})}` 
+      else 
+        h2.heading-primary Follow other users of Expecto Patronum to share your memories with!
   .right-sidebar

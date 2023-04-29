@@ -84,3 +84,34 @@ exports.getPostsParamUser = catchAsync(async (req, res, next) => {
     data: posts,
   });
 });
+
+exports.getPostsFollowers = catchAsync(async (req, res, next) => {
+  const posts = await Post.find({
+    creator: { $in: req.user.following },
+  })
+    .populate({ path: "creator", select: "name profilePicture" })
+    .sort({ createdAt: -1 });
+  req.posts = posts;
+
+  next();
+});
+
+exports.likePost = catchAsync(async (req, res, next) => {
+  console.log(req.params.postId);
+  const post = await Post.findById(req.params.postId);
+  if (post.likes.includes(req.user.id)) {
+    post.likes.splice(post.likes.indexOf(req.user.id), 1);
+    await post.save({ validateBeforeSave: false });
+    return res.status(200).json({
+      status: "success",
+      message: "Unliked",
+    });
+  } else {
+    post.likes.push(req.user.id);
+    await post.save({ validateBeforeSave: false });
+    res.status(200).json({
+      status: "success",
+      message: "Liked",
+    });
+  }
+});

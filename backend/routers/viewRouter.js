@@ -3,6 +3,7 @@ const router = express.Router();
 const viewController = require("../controllers/viewController");
 const authController = require("../controllers/authController");
 const userController = require("../controllers/userController");
+const postController = require("../controllers/postController");
 
 router.get(
   "/register",
@@ -13,7 +14,12 @@ router.get(
 router.get("/login", authController.restrictRegLog, viewController.renderLogin);
 router.get("/main", authController.protect, viewController.renderMain);
 
-router.get("/", authController.protect, viewController.renderMain);
+router.get(
+  "/",
+  authController.protect,
+  postController.getPostsFollowers,
+  viewController.renderMain
+);
 
 router.get(
   "/settings",

@@ -11,7 +11,7 @@ exports.renderLogin = (req, res) => {
 
 exports.renderMain = (req, res) => {
   const file = path.join(__dirname, "..", "views", "main");
-  res.render(file, { user: req.user });
+  res.render(file, { user: req.user, posts: req.posts });
 };
 
 exports.renderSettings = (req, res) => {

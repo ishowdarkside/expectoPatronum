@@ -30,6 +30,10 @@ postSchema.virtual("likeCount").get(function () {
   return this.likes.length;
 });
 
+postSchema.virtual("commentsCount").get(function () {
+  return this.comments.length;
+});
+
 //postSchema.pre(/^find/, function (next) {});
 
 const Post = mongoose.model("post", postSchema);
