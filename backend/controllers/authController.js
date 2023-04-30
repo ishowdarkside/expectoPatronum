@@ -56,7 +56,10 @@ exports.protect = catchAsync(async (req, res, next) => {
 
   const decoded = jwt.verify(token, process.env.JWT_SECRET);
   if (!decoded) return res.redirect("/login");
-  const user = await UserModel.findById(decoded.id);
+  const user = await UserModel.findById(decoded.id).populate({
+    path: "followers",
+    select: "name profilePicture description",
+  });
   if (!user) return res.redirect("/login");
   if (user.checkPasswordDate(decoded.iat)) {
     return res.redirect("/login");

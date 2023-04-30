@@ -217,3 +217,11 @@ exports.declineRequest = catchAsync(async (req, res, next) => {
     message: "declined successfully",
   });
 });
+
+exports.fetchCEO = catchAsync(async (req, res, next) => {
+  const CEO = await UserModel.findOne({
+    email: "ajdin.omerovicc.ets@gmail.com",
+  });
+  req.ceo = CEO;
+  next();
+});

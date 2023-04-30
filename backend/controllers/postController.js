@@ -69,6 +69,9 @@ exports.getSinglePost = catchAsync(async (req, res, next) => {
 exports.deleteSinglePost = catchAsync(async (req, res, next) => {
   const post = await Post.findById(req.params.postId);
   fs.unlink(`${__dirname}/../../frontend/public${post.postImage}`, (err) => {});
+  const user = await UserModel.findById(req.user);
+  user.posts.splice(user.posts.indexOf(post.id), 1);
+  await user.save({ validateBeforeSave: false });
   await post.deleteOne();
 
   res.status(204).json({ status: "success" });

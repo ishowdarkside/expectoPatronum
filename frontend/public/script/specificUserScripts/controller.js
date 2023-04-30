@@ -5,6 +5,7 @@ import {
   likePost,
   postComment,
   deleteComment,
+  followPanelUser,
 } from "./model.js";
 import SpecUserPosts from "./view.js";
 
@@ -16,3 +17,4 @@ SpecUserPosts.handleEachPost(
   deleteComment
 );
 SpecUserPosts.handleRequestingFollow(followUser);
+SpecUserPosts.handleFollowingPanel(followPanelUser);

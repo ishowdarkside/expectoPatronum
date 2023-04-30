@@ -68,13 +68,31 @@ class updateClass {
     this.#logoutBtn.addEventListener("click", async (e) => {
       e.preventDefault();
       const res = await handler();
-      console.log(res);
+
       if (res.status === "success") {
         this.handleSuccess(res.message);
         setTimeout(() => {
           location.reload(true);
         }, 2000);
       }
+    });
+  }
+
+  handleFollowingPanel(handler) {
+    const followBackBtns = document.querySelectorAll("#followback");
+    if (!followBackBtns) return;
+    followBackBtns.forEach((btn) => {
+      btn.addEventListener("click", async function (e) {
+        e.preventDefault();
+        const follower = e.target.closest(".recentFollower");
+        const res = await handler(follower.dataset.identifier);
+
+        if (res.message.startsWith("Started")) {
+          e.target.textContent = "Following";
+        } else {
+          e.target.textContent = "Follow back";
+        }
+      });
     });
   }
 }

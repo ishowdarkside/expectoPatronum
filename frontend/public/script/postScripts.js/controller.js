@@ -1,5 +1,5 @@
-import { uploadPost } from "./model.js";
+import { uploadPost, followUser } from "./model.js";
 import viewInstance from "./view.js";
 
-console.log("WORKING");
 viewInstance.handlePosting(uploadPost);
+viewInstance.handleFollowingPanel(followUser);

@@ -8,11 +8,12 @@
   }
   .search-data-wrapper {
     background-color: #fff;
-    border-radius: 1rem;
-    box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px,
-      rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
-    padding: 2rem;
 
+    padding: 2rem;
+    transition: all 0.2s ease;
+    &:hover {
+      background-color: rgba(#313131, 0.03);
+    }
     width: fit-content;
     display: grid;
     grid-column-gap: 2rem;
@@ -45,18 +46,24 @@
     .user-postCount {
       grid-column: 2 / span 1;
       grid-row: 3 / span 1;
-      color: #000;
+      color: #313131;
+      font-weight: 500;
+      font-size: 1.4rem;
     }
     .user-followerCount {
       grid-column: 3 / span 1;
       grid-row: 3 / span 1;
-      color: #000;
+      color: #313131;
+      font-weight: 500;
+      font-size: 1.4rem;
     }
 
     .user-followingCount {
       grid-column: 4 / span 1;
       grid-row: 3 / span 1;
-      color: #000;
+      color: #313131;
+      font-weight: 500;
+      font-size: 1.4rem;
     }
   }
 }

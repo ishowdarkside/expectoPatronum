@@ -2,7 +2,6 @@ class PostView {
   #formElement = document.querySelector("#createPostForm");
   #alertWindow = document.querySelector("#alertWindow");
   handlePosting(handler) {
-    console.log(this.#formElement);
     this.#formElement.addEventListener("submit", async (e) => {
       e.preventDefault();
       const postData = new FormData(this.#formElement);
@@ -32,6 +31,24 @@ class PostView {
     setTimeout(() => {
       this.#alertWindow.style.transform = `translateX(-50%) translateY(-6rem)`;
     }, 2000);
+  }
+
+  handleFollowingPanel(handler) {
+    const followBackBtns = document.querySelectorAll("#followback");
+    if (!followBackBtns) return;
+    followBackBtns.forEach((btn) => {
+      btn.addEventListener("click", async function (e) {
+        e.preventDefault();
+        const follower = e.target.closest(".recentFollower");
+        const res = await handler(follower.dataset.identifier);
+
+        if (res.message.startsWith("Started")) {
+          e.target.textContent = "Following";
+        } else {
+          e.target.textContent = "Follow back";
+        }
+      });
+    });
   }
 }
 

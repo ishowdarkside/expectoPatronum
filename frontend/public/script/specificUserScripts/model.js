@@ -52,3 +52,9 @@ export const deleteComment = async function (commentId, postId) {
     return data;
   } catch (err) {}
 };
+
+export const followPanelUser = async function (identifier) {
+  const res = await fetch(`/api/users/followUser/${identifier}`);
+  const data = await res.json();
+  return data;
+};

@@ -4,6 +4,7 @@ import {
   deleteSinglePost,
   postComment,
   deleteComment,
+  followUser,
 } from "./model.js";
 import PostView from "./view.js";
 
@@ -14,3 +15,5 @@ PostView.handleEachPost(
   postComment,
   deleteComment
 );
+
+PostView.handleFollowingPanel(followUser);

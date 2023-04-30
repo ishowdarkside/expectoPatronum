@@ -75,5 +75,25 @@ section.main__section
                 input(type='text' id='writeComment' name='writeComment' placeholder='Write comment')
                 button#postComment Post
   .right-sidebar
+    span#filler Featured Profile
+    a.featured-wrapper(href=`/findUser/${ceo.id}`)
+      img(src=`${ceo.profilePicture}`)
+      h2#featureName= ceo.name 
+      span#description= ceo.description
+    .recentFollowers-wrapper 
+      span#filler Recent Followers 
+      - const lastFive = user.followers.slice(-5);
+      if lastFive.length > 0
+          each follower in lastFive
+            a.recentFollower(data-identifier=`${follower._id}` href=`/findUser/${follower._id}`)
+              h2#name= follower.name
+              img#profilePic(src=`${follower.profilePicture}`)
+              span#desc= follower.description 
+              if user.following.includes(follower._id)
+                  button#followback(href='#') Following
+              else 
+                  button#followback(href='#') Follow back
+      else
+        span#fillerFollower No recent Followers
 #alertWindow 
   span

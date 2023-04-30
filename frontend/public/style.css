@@ -173,6 +173,90 @@ body {
           align-items: center;
           justify-content: center;
           padding: 0.2rem; }
+  .main__section .right-sidebar #filler {
+    margin-bottom: 3rem;
+    display: block;
+    padding: 1rem; }
+  .main__section .right-sidebar .featured-wrapper {
+    transition: all 0.3s ease;
+    padding: 1rem;
+    text-decoration: none;
+    display: grid;
+    grid-template-columns: min-content 1fr;
+    grid-template-rows: min-content 1fr;
+    column-gap: 2rem; }
+    .main__section .right-sidebar .featured-wrapper:hover {
+      background-color: rgba(49, 49, 49, 0.05); }
+  .main__section .right-sidebar img {
+    width: 5rem;
+    height: 5rem;
+    grid-column: 1 / span 1;
+    grid-row: 1 / span 2;
+    border-radius: 100px; }
+  .main__section .right-sidebar #featureName {
+    font-size: 1.6rem;
+    color: #313131;
+    grid-column: 2 / span 1;
+    grid-row: 1 / span 1; }
+  .main__section .right-sidebar #description {
+    grid-column: 2 / span 1;
+    color: rgba(49, 49, 49, 0.9);
+    font-size: 1.4rem;
+    font-style: italic;
+    grid-row: 2 / span 1; }
+  .main__section .right-sidebar .recentFollowers-wrapper {
+    margin-top: 5rem; }
+    .main__section .right-sidebar .recentFollowers-wrapper #fillerFollower {
+      margin-left: 1rem;
+      font-size: 1.4rem; }
+    .main__section .right-sidebar .recentFollowers-wrapper .recentFollower {
+      text-decoration: none;
+      display: grid;
+      padding: 1rem;
+      cursor: pointer;
+      grid-template-columns: min-content 1fr;
+      transition: all 0.2s ease;
+      grid-template-rows: min-content 1fr;
+      column-gap: 2rem; }
+      .main__section .right-sidebar .recentFollowers-wrapper .recentFollower:hover {
+        background-color: rgba(49, 49, 49, 0.05); }
+      .main__section .right-sidebar .recentFollowers-wrapper .recentFollower #name {
+        font-size: 1.6rem;
+        color: #313131;
+        grid-column: 2 / span 1;
+        grid-row: 1 / span 1; }
+      .main__section .right-sidebar .recentFollowers-wrapper .recentFollower #desc {
+        grid-column: 2 / span 1;
+        color: rgba(49, 49, 49, 0.9);
+        font-size: 1.4rem;
+        font-style: italic;
+        grid-row: 2 / span 1; }
+      .main__section .right-sidebar .recentFollowers-wrapper .recentFollower img {
+        width: 5rem;
+        height: 5rem;
+        grid-column: 1 / span 1;
+        grid-row: 1 / span 2;
+        border-radius: 100px; }
+      .main__section .right-sidebar .recentFollowers-wrapper .recentFollower #followback {
+        font-size: 1.3rem;
+        text-decoration: none;
+        color: #313131;
+        grid-column: 2 / span 1;
+        color: #277ffe;
+        justify-self: start;
+        border: none;
+        outline: none;
+        background-color: transparent;
+        cursor: pointer; }
+        .main__section .right-sidebar .recentFollowers-wrapper .recentFollower #followback:hover {
+          text-decoration: underline;
+          display: inline; }
+      .main__section .right-sidebar .recentFollowers-wrapper .recentFollower #followState {
+        font-size: 1.3rem;
+        color: #313131;
+        grid-column: 2 / span 1;
+        color: #277ffe;
+        justify-self: start; }
   .main__section .main-grid {
     padding-top: 10rem !important;
     overflow-y: scroll; }
@@ -540,14 +624,15 @@ body {
     text-decoration: none; }
   .search-user-grid .search-data-wrapper {
     background-color: #fff;
-    border-radius: 1rem;
-    box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
     padding: 2rem;
+    transition: all 0.2s ease;
     width: fit-content;
     display: grid;
     grid-column-gap: 2rem;
     grid-template-rows: repeat(3, 1fr);
     grid-template-columns: min-content repeat(3, max-content); }
+    .search-user-grid .search-data-wrapper:hover {
+      background-color: rgba(49, 49, 49, 0.03); }
     .search-user-grid .search-data-wrapper img {
       grid-row: 1 / -1;
       grid-column: 1 / span 1;
@@ -568,15 +653,21 @@ body {
     .search-user-grid .search-data-wrapper .user-postCount {
       grid-column: 2 / span 1;
       grid-row: 3 / span 1;
-      color: #000; }
+      color: #313131;
+      font-weight: 500;
+      font-size: 1.4rem; }
     .search-user-grid .search-data-wrapper .user-followerCount {
       grid-column: 3 / span 1;
       grid-row: 3 / span 1;
-      color: #000; }
+      color: #313131;
+      font-weight: 500;
+      font-size: 1.4rem; }
     .search-user-grid .search-data-wrapper .user-followingCount {
       grid-column: 4 / span 1;
       grid-row: 3 / span 1;
-      color: #000; }
+      color: #313131;
+      font-weight: 500;
+      font-size: 1.4rem; }
 
 .private-wrapper img {
   width: 10rem; }
@@ -652,7 +743,8 @@ body {
   flex-direction: column;
   gap: 8rem; }
   .main-posts-wrapper .post-wrapper {
-    border-bottom: 1px solid rgba(49, 49, 49, 0.2); }
+    border-bottom: 1px solid rgba(49, 49, 49, 0.2);
+    padding-bottom: 2rem; }
     .main-posts-wrapper .post-wrapper a {
       text-decoration: none;
       color: #313131;

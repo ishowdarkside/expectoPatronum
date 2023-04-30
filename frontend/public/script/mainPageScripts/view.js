@@ -18,6 +18,24 @@ class MainView {
       });
     });
   }
+
+  handleFollowingPanel(handler) {
+    const followBackBtns = document.querySelectorAll("#followback");
+    if (!followBackBtns) return;
+    followBackBtns.forEach((btn) => {
+      btn.addEventListener("click", async function (e) {
+        e.preventDefault();
+        const follower = e.target.closest(".recentFollower");
+        const res = await handler(follower.dataset.identifier);
+
+        if (res.message.startsWith("Started")) {
+          e.target.textContent = "Following";
+        } else {
+          e.target.textContent = "Follow back";
+        }
+      });
+    });
+  }
 }
 
 export default new MainView();
