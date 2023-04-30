@@ -19,6 +19,7 @@
   },
   "scripts": {
     "start:dev": "nodemon backend/server.js",
-    "watch:sass": "node-sass frontend/public/sass/main.scss frontend/public/style.css -w"
+    "watch:sass": "node-sass frontend/public/sass/main.scss frontend/public/style.css -w",
+    "start": "node backend/server.js"
   }
 }
