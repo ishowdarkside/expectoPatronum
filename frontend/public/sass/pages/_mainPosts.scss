@@ -39,7 +39,6 @@
       }
     }
     .post-data {
-      padding: 1rem;
       background-color: #ffff;
       display: flex;
       flex-direction: column;
@@ -48,6 +47,7 @@
         display: flex;
         align-items: center;
         justify-content: flex-start;
+        padding: 1rem 0;
         gap: 1rem;
       }
 

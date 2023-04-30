@@ -28,3 +28,27 @@ export const likePost = async function (identifier) {
   const data = await res.json();
   return data;
 };
+
+//commenting
+export const postComment = async function (inputData, identifier) {
+  const res = await fetch(`/api/postOperations/createComment/${identifier}`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      content: inputData,
+    }),
+  });
+
+  const data = await res.json();
+  return data;
+};
+
+export const deleteComment = async function (commentId, postId) {
+  try {
+    const res = await fetch(`/api/postOperations/${postId}/${commentId}`, {
+      method: "DELETE",
+    });
+    const data = await res.json();
+    return data;
+  } catch (err) {}
+};

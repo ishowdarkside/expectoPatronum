@@ -21,19 +21,31 @@ class SpecUserPosts {
     });
   }
 
-  handleEachPost(handler, likeHandler) {
+  handleEachPost(handler, likeHandler, postComment, deleteComment) {
     if (this.#checkPrivate) return;
     this.#parentElement.addEventListener("click", (e) => {
       const post = e.target.closest(".postWrapper");
       if (!post) return;
       const currPost = post.dataset.identifier;
-      this.#displayOverlay(handler, currPost, likeHandler);
+      this.#displayOverlay(
+        handler,
+        currPost,
+        likeHandler,
+        postComment,
+        deleteComment
+      );
     });
   }
 
-  async #displayOverlay(handler, identifier, likeHandler) {
+  async #displayOverlay(
+    handler,
+    identifier,
+    likeHandler,
+    postComment,
+    deleteComment
+  ) {
     const res = await handler(identifier);
-
+    console.log(res);
     const html = `
     <div class='page__me__post-overlay' style='display:flex'>
     <button id="closeOverlay">X</button>
@@ -47,12 +59,30 @@ class SpecUserPosts {
     <span id="creator">${res.data.creator.name}</span>
     </div>
     <div class="page__me__comment-section">
-    
-    <span id="#description">${
+    ${
       res.data.postDescription
-        ? `<b>${res.data.creator.name}</b> <span>${res.data.postDescription}</span>`
+        ? `<a href="/findUser/${res.data.creator._id}"><img src="${
+            res.data.creator.profilePicture
+          }"> <span><b>${res.data.creator.name.split(" ")[0]}</b> ${
+            res.data.postDescription
+          }</span></a>`
         : ""
-    }</span>
+    }
+    ${res.data.comments
+      .map((comment) => {
+        return `<div class="comment-wrapper" data-identifier="${comment._id}">
+      <span id='commCreator'>${comment.creator.name.split(" ")[0]}</span>
+      <img src='${comment.creator.profilePicture}'>
+      <span id="commData">${comment.content}</span>
+      ${
+        comment.creator._id === res.currentUser
+          ? '<button id="deleteComment">Delete</button>'
+          : ""
+      }
+      </div>
+      `;
+      })
+      .join("")}
     </div>
     <div class="page__me__operations">
     <button id="likePost"><img class='likePost' src="${
@@ -78,6 +108,9 @@ class SpecUserPosts {
 
     this.#handleClosingOverlay();
     this.#handleLiking(likeHandler, identifier);
+
+    this.#handlePostComment(postComment, identifier);
+    this.#handleDeleteComment(deleteComment, identifier);
   }
 
   #handleClosingOverlay() {
@@ -140,6 +173,32 @@ class SpecUserPosts {
           } likes`;
         }
       });
+  }
+
+  #handlePostComment(commentHandler, identifier) {
+    document
+      .querySelector(".page__me__operations form")
+      .addEventListener("submit", async function (e) {
+        e.preventDefault();
+        const input = this.querySelector("#postComment");
+        const res = await commentHandler(input.value, identifier);
+        location.reload(true);
+      });
+  }
+
+  #handleDeleteComment(handler, postIdentifier) {
+    document.querySelectorAll("#deleteComment").forEach((btn) => {
+      btn.addEventListener("click", async function (e) {
+        e.preventDefault();
+        const commentElement = e.target.closest(".comment-wrapper");
+        const res = await handler(
+          commentElement.dataset.identifier,
+          postIdentifier
+        );
+
+        commentElement.remove();
+      });
+    });
   }
 }
 

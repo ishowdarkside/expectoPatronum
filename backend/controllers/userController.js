@@ -3,10 +3,10 @@ const UserModel = require("../models/userModel");
 const AppError = require("../utils/AppError");
 const bcrypt = require("bcrypt");
 const sharp = require("sharp");
-const { ObjectId } = require("mongodb");
 
 exports.updateMe = catchAsync(async (req, res, next) => {
   const user = await UserModel.findById(req.user.id);
+
   if (req.file) {
     user.name = req.body.name;
     user.email = req.body.email;

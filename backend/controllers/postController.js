@@ -52,10 +52,12 @@ exports.getPostCurrUser = catchAsync(async (req, res, next) => {
 });
 
 exports.getSinglePost = catchAsync(async (req, res, next) => {
-  const post = await Post.findById(req.params.postId).populate({
-    path: "creator",
-    select: "name profilePicture",
-  });
+  const post = await Post.findById(req.params.postId)
+    .populate({
+      path: "creator",
+      select: "name profilePicture",
+    })
+    .populate({ path: "comments.creator", select: "name profilePicture" });
 
   res.status(200).json({
     status: "success",

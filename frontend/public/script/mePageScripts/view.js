@@ -20,23 +20,35 @@ class PostView {
     });
   }
 
-  handleEachPost(handler, deleteHandler) {
+  handleEachPost(handler, deleteHandler, commentHandler, deleteComment) {
     this.#parentElement.addEventListener("click", (e) => {
       const post = e.target.closest(".postWrapper");
       if (!post) return;
       const currPost = post.dataset.identifier;
-      this.#displayOverlay(handler, currPost, deleteHandler);
+      this.#displayOverlay(
+        handler,
+        currPost,
+        deleteHandler,
+        commentHandler,
+        deleteComment
+      );
     });
   }
 
-  async #displayOverlay(handler, identifier, deleteHandler) {
+  async #displayOverlay(
+    handler,
+    identifier,
+    deleteHandler,
+    commentHandler,
+    deleteComment
+  ) {
     const res = await handler(identifier);
     this.#overlay.style.display = "flex";
-    console.log(res);
+
     const html = `
     
     <button id="closeOverlay">X</button>
-    <div class="page__me__post-popup">
+    <div class="page__me__post-popup" data-post='${res.data.id}'>
     <div class="page__me__img-wrapper">
     <img src="${res.data.postImage}">
     </div>
@@ -56,6 +68,17 @@ class PostView {
           }</span></a>`
         : ""
     }
+    ${res.data.comments
+      .map((comment) => {
+        return `<div class="comment-wrapper" data-identifier="${comment._id}">
+      <span id='commCreator'>${comment.creator.name.split(" ")[0]}</span>
+      <img src='${comment.creator.profilePicture}'>
+      <span id="commData">${comment.content}</span>
+      <button id="deleteComment">Delete</button>
+      </div>
+      `;
+      })
+      .join("")}
   
     </div>
     <div class="page__me__operations">
@@ -77,6 +100,8 @@ class PostView {
 
     this.#handleClosingOverlay();
     this.#handleDeletingPost(deleteHandler, identifier);
+    this.#handlePostComment(commentHandler, identifier);
+    this.#handleDeleteComment(deleteComment, identifier);
   }
   #handleClosingOverlay() {
     this.#overlay
@@ -104,6 +129,32 @@ class PostView {
     setTimeout(() => {
       location.reload(true);
     }, 2000);
+  }
+
+  #handlePostComment(commentHandler, identifier) {
+    document
+      .querySelector(".page__me__operations form")
+      .addEventListener("submit", async function (e) {
+        e.preventDefault();
+        const input = this.querySelector("#postComment");
+        const res = await commentHandler(input.value, identifier);
+        location.reload(true);
+      });
+  }
+
+  #handleDeleteComment(handler, postIdentifier) {
+    document.querySelectorAll("#deleteComment").forEach((btn) => {
+      btn.addEventListener("click", async function (e) {
+        e.preventDefault();
+        const commentElement = e.target.closest(".comment-wrapper");
+        const res = await handler(
+          commentElement.dataset.identifier,
+          postIdentifier
+        );
+
+        commentElement.remove();
+      });
+    });
   }
 }
 
