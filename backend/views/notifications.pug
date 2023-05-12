@@ -47,16 +47,29 @@ section.main__section
   .main-grid
     .notifications-wrapper
       h2.heading-primary Follow Requests
-      each request in followRequests
-        .notification-wrapper(data-identifier=`${request.id}`)
-          .user-info 
-            img(src=`${request.profilePicture}`)
-            span#name= request.name 
-            span#desc= request.description
-          .operations-wrapper 
-            a.acceptRequest(href='#') Accept 
-            a.declineRequest(href='#') Decline
-
+      if (followRequests.length === 0)
+        span Nothing to show here 
+      else
+        each request in followRequests
+          .notification-wrapper(data-identifier=`${request.id}`)
+            .user-info 
+              img(src=`${request.profilePicture}`)
+              span#name= request.name 
+              span#desc= request.description
+            .operations-wrapper 
+              a.acceptRequest(href='#') Accept 
+              a.declineRequest(href='#') Decline
+    .recentFollowersPanel-wrapper
+      h2.heading-primary Recent Followers
+      for recentFollower in user.followers.slice(-5)
+        a.user-info(href=`/findUser/${recentFollower._id}`)
+          img(src=`${recentFollower.profilePicture}`)
+          span#name= recentFollower.name 
+          span#desc= recentFollower.description
+          if (user.following.includes(recentFollower._id))
+            span#followState Following
+          else
+            span#followState Not Following
   .right-sidebar
     span#filler Featured Profile
     a.featured-wrapper(href=`/findUser/${ceo.id}`)
@@ -64,10 +77,9 @@ section.main__section
       h2#featureName= ceo.name 
       span#description= ceo.description
     .recentFollowers-wrapper 
-      span#filler Recent Followers 
-      - const lastFive = user.followers.slice(-5);
-      if lastFive.length > 0
-          each follower in lastFive
+      span#filler Recent Followers
+      if user.followers.length > 0
+          each follower in user.followers
             a.recentFollower(data-identifier=`${follower._id}` href=`/findUser/${follower._id}`)
               h2#name= follower.name
               img#profilePic(src=`${follower.profilePicture}`)

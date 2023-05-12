@@ -11,7 +11,6 @@ exports.renderLogin = (req, res) => {
 
 exports.renderMain = (req, res) => {
   const file = path.join(__dirname, "..", "views", "main");
-  console.log(req.user);
   res.render(file, { user: req.user, posts: req.posts, ceo: req.ceo });
 };
 
@@ -67,7 +66,6 @@ exports.renderSearchedUser = (req, res) => {
 
 exports.renderNotifications = (req, res) => {
   const file = path.join(__dirname, "..", "views", "notifications");
-
   res.render(file, {
     user: req.user,
     followRequests: req.followRequests,

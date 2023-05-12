@@ -684,7 +684,8 @@ body {
 
 .main-grid .notifications-wrapper {
   width: 100%;
-  height: 100%;
+  height: fit-content;
+  margin-bottom: 5rem;
   display: flex;
   flex-direction: column;
   gap: 2rem;
@@ -735,6 +736,37 @@ body {
         text-decoration: none;
         border-radius: 1rem;
         color: #ffff; }
+
+.recentFollowersPanel-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem; }
+  .recentFollowersPanel-wrapper .user-info {
+    text-decoration: none;
+    color: #313131;
+    transition: all 0.3s ease;
+    padding: 1rem;
+    display: grid;
+    grid-template-columns: min-content max-content 1fr;
+    grid-template-rows: repeat(2, 1fr);
+    margin-top: 5rem;
+    gap: 1rem; }
+    .recentFollowersPanel-wrapper .user-info:hover {
+      background-color: rgba(49, 49, 49, 0.2); }
+    .recentFollowersPanel-wrapper .user-info img {
+      grid-row: 1 / -1;
+      grid-column: 1 / span 1;
+      width: 5rem;
+      border-radius: 100px; }
+    .recentFollowersPanel-wrapper .user-info #followState {
+      grid-column: 3 / -1;
+      grid-row: 1 / -1;
+      color: #277ffe;
+      align-self: center;
+      justify-self: end; }
+    .recentFollowersPanel-wrapper .user-info #desc {
+      grid-column: 2 / span 1;
+      grid-row: 2 / span 1; }
 
 .main-posts-wrapper {
   display: flex;

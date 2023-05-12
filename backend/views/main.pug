@@ -46,7 +46,7 @@ section.main__section
           span Settings
   .main-grid
     .main-posts-wrapper
-      if posts && posts.length > 0
+      if (posts && posts.length > 0)
         each post in posts 
           .post-wrapper(data-post-identifier=`${post.id}`)
             a(href=`/findUser/${post.creator.id}`)

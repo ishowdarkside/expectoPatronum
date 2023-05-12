@@ -16,6 +16,7 @@ router.get(
   "/main",
   authController.protect,
   userController.fetchCEO,
+  postController.getPostsFollowers,
   viewController.renderMain
 );
 
