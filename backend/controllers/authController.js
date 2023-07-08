@@ -27,19 +27,15 @@ exports.signup = catchAsync(async (req, res, next) => {
     email: req.body.email,
     password: req.body.password,
     passwordConfirm: req.body.passwordConfirm,
+    confirmed:true
   });
 
-  const confrimationToken = crypto.randomBytes(32).toString("hex");
-  user.confirmToken = confrimationToken;
-  user.confirmTokenExpires = new Date(Date.now() + 10 * 60 * 1000);
+
   await user.save();
-  const url = `${req.protocol}://${req.headers.host}/api/users/confirmAccount/${confrimationToken}`;
-  const message = `To confirm your account go to link \n ${url} \nAfter 10 minutes,if you don't confirm your account,your data will be lost and you will have to register again!`;
-  await new Email(user, url, message).confirmAccount();
 
   res.status(200).json({
     status: "success",
-    message: `Confrimation email send to ${user.email}`,
+    message: `Registered successfully!`,
   });
 });
 
@@ -71,7 +67,7 @@ exports.protect = catchAsync(async (req, res, next) => {
 });
 
 exports.confirmAccount = catchAsync(async (req, res, next) => {
-  let currentDate = new Date().toISOString();
+ /* let currentDate = new Date().toISOString();
   const user = await UserModel.findOne({
     confirmToken: req.params.token,
     confirmTokenExpires: { $gte: currentDate },
@@ -80,7 +76,7 @@ exports.confirmAccount = catchAsync(async (req, res, next) => {
   user.confirmToken = undefined;
   user.confirmed = true;
   user.confirmTokenExpires = undefined;
-  await user.save({ validateBeforeSave: false });
+  await user.save({ validateBeforeSave: false });*/
 
   //Create a token
   // const token = await createSendToken(user._id, res);
